@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Pyramids &amp; Ancient Empires — Scenic Ikon</title>
+<style>
+:root{--navy:#0d1b2a;--navy-mid:#1a2e45;--navy-light:#243b55;--green:#2e8b57;--gold:#c9a84c;--gold-light:#e2c06a;--text:#e8edf2;--text-muted:#9fb3c8;--text-dim:#6b8299;--card:#162030;--card-border:#243b55;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--navy);color:var(--text);font-size:15px;line-height:1.6;}
+a{color:var(--gold-light);text-decoration:none;}a:hover{text-decoration:underline;}
+.skip-link{position:absolute;top:-40px;left:0;background:var(--gold);color:var(--navy);padding:8px 16px;z-index:9999;font-weight:700;border-radius:0 0 6px 0;}.skip-link:focus{top:0;}
+#live-region{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+header{background:linear-gradient(135deg,#0a1520 0%,#1a2e45 50%,#0d2a1a 100%);border-bottom:2px solid var(--gold);padding:20px 24px 16px;position:sticky;top:0;z-index:100;}
+.header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ship-name{font-size:11px;font-weight:600;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.voyage-title{font-size:20px;font-weight:700;color:var(--text);margin:4px 0 2px;}
+.voyage-dates{font-size:13px;color:var(--text-muted);}
+.header-badge{background:var(--green);color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
+.port-nav-wrapper{background:var(--navy-mid);border-bottom:1px solid var(--card-border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--gold) var(--navy-mid);}
+.port-nav{display:flex;gap:0;min-width:max-content;padding:0 8px;}
+.port-tab{padding:11px 13px;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;}
+.port-tab:hover{color:var(--text);background:rgba(255,255,255,0.04);}
+.port-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,0.08);}
+.planner-tab{color:#5de8d0 !important;}.planner-tab.active{color:#1abc9c !important;border-bottom-color:#1abc9c !important;background:rgba(26,188,156,0.08) !important;}
+.essentials-bar{background:var(--navy-light);border-bottom:1px solid var(--card-border);padding:0 16px;}
+.essentials-toggle{background:none;border:none;color:var(--gold-light);font-size:13px;font-weight:600;cursor:pointer;padding:10px 0;display:flex;align-items:center;gap:6px;font-family:inherit;width:100%;}
+.essentials-toggle .arrow{transition:transform 0.2s;}.essentials-toggle.open .arrow{transform:rotate(180deg);}
+.essentials-panel{display:none;padding:0 0 16px;}.essentials-panel.open{display:block;}
+.essentials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:8px;}
+.essential-item{background:var(--card);border:1px solid var(--card-border);border-radius:8px;padding:12px 14px;}
+.essential-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.essential-value{font-size:13px;color:var(--text);}
+main{padding:0;}
+.port-section{display:none;padding:20px 16px 40px;max-width:900px;margin:0 auto;}.port-section.active{display:block;}
+.port-header{background:linear-gradient(135deg,var(--navy-light),var(--card));border:1px solid var(--card-border);border-radius:12px;padding:20px;margin-bottom:20px;}
+.port-header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
+.port-name{font-size:24px;font-weight:800;color:var(--text);}
+.port-country{font-size:13px;color:var(--text-muted);margin-top:2px;}
+.port-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:0.5px;}
+.badge-dock{background:rgba(46,139,87,0.25);color:#5ddb8e;border:1px solid rgba(46,139,87,0.4);}
+.badge-tender{background:rgba(192,57,43,0.25);color:#e87c6e;border:1px solid rgba(192,57,43,0.4);}
+.badge-currency{background:rgba(201,168,76,0.2);color:var(--gold-light);border:1px solid rgba(201,168,76,0.3);}
+.badge-tip{background:rgba(26,188,156,0.2);color:#5de8d0;border:1px solid rgba(26,188,156,0.3);}
+.port-quick-facts{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--card-border);}
+.quick-fact{font-size:13px;color:var(--text-muted);}.quick-fact strong{color:var(--text);}
+.section-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;margin-bottom:16px;overflow:hidden;}
+.section-card-header{padding:13px 18px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--card-border);display:flex;align-items:center;gap:10px;}
+.section-icon{font-size:18px;}.section-title{font-size:14px;font-weight:700;letter-spacing:0.5px;color:var(--gold);text-transform:uppercase;}
+.section-card-body{padding:16px 18px;}
+.item{padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);}.item:last-child{border-bottom:none;padding-bottom:0;}.item:first-child{padding-top:0;}
+.item-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.item-desc{font-size:13px;color:var(--text-muted);line-height:1.5;}
+.item-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:4px;margin-bottom:4px;letter-spacing:0.5px;}
+.tag-holly{background:rgba(26,188,156,0.2);color:#5de8d0;border:1px solid rgba(26,188,156,0.3);}
+.tag-market{background:rgba(201,168,76,0.2);color:var(--gold-light);border:1px solid rgba(201,168,76,0.3);}
+.tag-seafood{background:rgba(52,152,219,0.2);color:#7ec8f0;border:1px solid rgba(52,152,219,0.3);}
+.tag-wine{background:rgba(155,89,182,0.2);color:#c39bd3;border:1px solid rgba(155,89,182,0.3);}
+.tag-crowd{background:rgba(231,76,60,0.2);color:#f1948a;border:1px solid rgba(231,76,60,0.3);}
+.tag-walk{background:rgba(46,204,113,0.2);color:#82e0aa;border:1px solid rgba(46,204,113,0.3);}
+.tag-photo{background:rgba(241,196,15,0.2);color:#f9e79f;border:1px solid rgba(241,196,15,0.3);}
+.tag-history{background:rgba(231,76,60,0.15);color:#f1948a;border:1px solid rgba(231,76,60,0.3);}
+.crowd-alert{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#f1948a;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start;}
+.holly-safe{background:rgba(26,188,156,0.08);border:1px solid rgba(26,188,156,0.25);border-radius:8px;padding:10px 14px;font-size:13px;color:#5de8d0;margin-bottom:12px;}
+.holly-safe strong{color:#1abc9c;}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;text-decoration:none;transition:all 0.2s;}
+.btn-map{background:rgba(52,152,219,0.2);color:#7ec8f0;border:1px solid rgba(52,152,219,0.4);}.btn-map:hover{background:rgba(52,152,219,0.35);text-decoration:none;}
+.btn-ai{background:rgba(155,89,182,0.2);color:#c39bd3;border:1px solid rgba(155,89,182,0.4);}.btn-ai:hover{background:rgba(155,89,182,0.35);text-decoration:none;}
+.transport-table{width:100%;border-collapse:collapse;font-size:13px;}
+.transport-table th{text-align:left;padding:8px 10px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--card-border);}
+.transport-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--text-muted);vertical-align:top;}
+.transport-table td:first-child{color:var(--text);font-weight:600;}.transport-table tr:last-child td{border-bottom:none;}
+.official-links{display:flex;flex-direction:column;gap:8px;}
+.official-link{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--card-border);border-radius:8px;font-size:13px;color:var(--gold-light);transition:background 0.2s;}
+.official-link:hover{background:rgba(255,255,255,0.07);text-decoration:none;}
+.official-link-icon{font-size:16px;}.official-link-text{flex:1;}
+.official-link-name{font-weight:600;color:var(--text);}.official-link-desc{font-size:11px;color:var(--text-dim);}
+/* DAY PLANNER */
+.dp-port-select-wrap{margin-bottom:20px;}.dp-port-select-wrap label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.dp-port-select{width:100%;background:var(--card);border:1px solid var(--card-border);color:var(--text);font-size:15px;font-weight:600;padding:10px 14px;border-radius:8px;font-family:inherit;cursor:pointer;}
+.dp-port-select:focus{outline:2px solid var(--gold);}
+.dp-card{background:var(--card);border:1px solid var(--card-border);border-radius:10px;margin-bottom:16px;overflow:hidden;}
+.dp-card-header{padding:13px 18px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--card-border);display:flex;align-items:center;gap:10px;}
+.dp-card-title{font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.dp-card-title.teal{color:#1abc9c;}.dp-card-title.gold{color:var(--gold);}.dp-card-title.blue{color:#7ec8f0;}
+.dp-card-body{padding:16px 18px;}
+.dp-times-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.dp-field-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;margin-bottom:5px;}
+.dp-input{width:100%;background:var(--navy-mid);border:1px solid var(--card-border);color:var(--text);font-size:14px;padding:9px 12px;border-radius:7px;font-family:inherit;}
+.dp-input:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+.dp-textarea{width:100%;background:var(--navy-mid);border:1px solid var(--card-border);color:var(--text);font-size:13px;padding:9px 12px;border-radius:7px;font-family:inherit;resize:vertical;min-height:80px;}
+.dp-textarea:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+.dp-tender-alert{background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.35);border-radius:7px;padding:9px 13px;font-size:12px;color:#e87c6e;margin-top:10px;display:none;}
+.dp-tender-alert.show{display:block;}
+.dp-checklist{list-style:none;}
+.dp-checklist li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.dp-checklist li:last-child{border-bottom:none;}
+.dp-checklist input[type=checkbox]{margin-top:3px;width:16px;height:16px;accent-color:#1abc9c;flex-shrink:0;cursor:pointer;}
+.dp-checklist label{font-size:13px;color:var(--text-muted);cursor:pointer;line-height:1.4;}
+.dp-checklist input:checked+label{color:var(--text);text-decoration:line-through;opacity:0.6;}
+.dp-add-row{display:flex;gap:8px;margin-top:12px;}
+.dp-add-input{flex:1;background:var(--navy-mid);border:1px solid var(--card-border);color:var(--text);font-size:13px;padding:8px 12px;border-radius:7px;font-family:inherit;}
+.dp-add-input:focus{outline:2px solid var(--gold);}
+.dp-add-btn{background:rgba(26,188,156,0.2);border:1px solid rgba(26,188,156,0.4);color:#1abc9c;font-size:13px;font-weight:700;padding:8px 14px;border-radius:7px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.dp-add-btn:hover{background:rgba(26,188,156,0.35);}
+.dp-clear-btn{background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.3);color:#e87c6e;font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:inherit;margin-left:auto;display:block;margin-top:14px;}
+.dp-saved-note{font-size:11px;color:var(--text-dim);text-align:right;margin-top:8px;font-style:italic;}
+@media(min-width:700px){.port-section{padding:24px 24px 60px;}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="live-region" aria-live="polite" aria-atomic="true"></div>
+<header>
+  <div class="header-top">
+    <div>
+      <div class="ship-name">Scenic Ikon &middot; Scenic Ocean Cruises</div>
+      <div class="voyage-title">Ultimate Pyramids &amp; Ancient Empires</div>
+      <div class="voyage-dates">Rome to Istanbul &middot; April 21 &ndash; May 16, 2028 &middot; 25 Nights &middot; Loyalty Departure</div>
+    </div>
+    <div class="header-badge">20 Ports</div>
+  </div>
+</header>
+<nav aria-label="Port navigation">
+  <div class="port-nav-wrapper">
+    <div class="port-nav" role="tablist">
+      <button class="port-tab active" role="tab" aria-selected="true" onclick="showPort('rome',this)">&#127470;&#127481; Rome</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('bonifacio',this)">&#127467;&#127479; Bonifacio</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('portocervo',this)">Porto Cervo</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('sorrento',this)">Sorrento</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('syracuse',this)">Syracuse</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('malta',this)">&#127474;&#127481; Malta</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('chania',this)">Chania</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('alexandria',this)">&#127466;&#127468; Alexandria</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('rhodes',this)">Rhodes</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('mykonos',this)">Mykonos</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('athens',this)">Athens</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('hydra',this)">Hydra</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('milos',this)">Milos</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('heraklion',this)">Heraklion</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('santorini',this)">Santorini</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('naxos',this)">Naxos</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('kusadasi',this)">&#127481;&#127479; Kusadasi</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('dikili',this)">Dikili</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('canakkale',this)">&#199;anakkale</button>
+      <button class="port-tab" role="tab" aria-selected="false" onclick="showPort('istanbul',this)">Istanbul</button>
+      <button class="port-tab planner-tab" role="tab" aria-selected="false" onclick="showPort('planner',this)">&#128203; Day Planner</button>
+    </div>
+  </div>
+</nav>
+<div class="essentials-bar">
+  <button class="essentials-toggle" onclick="toggleEssentials(this)" aria-expanded="false">
+    <span>&#9875; Voyage Essentials &amp; Holly Notes</span>
+    <span class="arrow">&#9660;</span>
+  </button>
+  <div class="essentials-panel" id="essentials-panel">
+    <div class="essentials-grid">
+      <div class="essential-item"><div class="essential-label">Ship</div><div class="essential-value">Scenic Ikon &middot; 270 guests &middot; 135 all-verandah suites &middot; Butler service &middot; 15 dining venues &middot; All-inclusive</div></div>
+      <div class="essential-item"><div class="essential-label">Ship Features</div><div class="essential-value">2 Airbus H130-T2 helicopters &middot; Triton submersible (100m) &middot; Zodiacs &middot; Fassmer tenders &middot; 1,700m&sup2; spa</div></div>
+      <div class="essential-item"><div class="essential-label">Italy / France / Greece / Malta</div><div class="essential-value">Euro (&euro;) &middot; Cards widely accepted &middot; Carry &euro;100&ndash;150 cash for markets, taxis &amp; tenders</div></div>
+      <div class="essential-item"><div class="essential-label">Egypt Currency</div><div class="essential-value">Egyptian Pound (EGP) &middot; Use Uber/Careem for transparent pricing &middot; Carry EGP for markets &middot; ATM at port</div></div>
+      <div class="essential-item"><div class="essential-label">Turkey Currency</div><div class="essential-value">Turkish Lira (TRY) &middot; EUR/USD accepted at taxis &middot; Carry TRY for markets &amp; local caf&eacute;s</div></div>
+      <div class="essential-item"><div class="essential-label">Tender Ports</div><div class="essential-value">Bonifacio &middot; Sorrento &middot; Hydra &middot; Milos &middot; Santorini &middot; Mykonos (sometimes) &mdash; ship anchors offshore</div></div>
+      <div class="essential-item"><div class="essential-label">Dock Ports</div><div class="essential-value">Rome &middot; Porto Cervo &middot; Syracuse &middot; Malta &middot; Chania &middot; Alexandria &middot; Rhodes &middot; Athens &middot; Heraklion &middot; Naxos &middot; Kusadasi &middot; Dikili &middot; &Ccedil;anakkale &middot; Istanbul</div></div>
+      <div class="essential-item"><div class="essential-label">Holly Avoids</div><div class="essential-value">Red meat &middot; Dairy &middot; Garlic &middot; Red wines &middot; "senza aglio" (Italy) &middot; "sans ail" (France) &middot; "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (Greece) &middot; "&#1576;&#1583;&#1608;&#1606; &#1579;&#1608;&#1605;" (Egypt) &middot; "sar&#305;msak yok" (Turkey)</div></div>
+      <div class="essential-item"><div class="essential-label">Holly Loves</div><div class="essential-value">Seafood &middot; Fresh fish &middot; Olive oils &middot; White wines &middot; Local varieties &middot; Dried fruits &middot; Fresh produce</div></div>
+      <div class="essential-item"><div class="essential-label">April&ndash;May Weather</div><div class="essential-value">Italy/Corsica: 18&ndash;22&deg;C &middot; Greece: 20&ndash;25&deg;C, ideal &middot; Egypt: 25&ndash;30&deg;C, warm &middot; Turkey: 20&ndash;24&deg;C, spring</div></div>
+      <div class="essential-item"><div class="essential-label">Greece Cruise Levy</div><div class="essential-value">&euro;12/person in April&ndash;May at Santorini &middot; &euro;3 spring/fall at other Greek ports &middot; Charged to onboard account</div></div>
+      <div class="essential-item"><div class="essential-label">Egypt Visa</div><div class="essential-value">Typically handled onboard prior to arrival &middot; Passport required to exit Alexandria port &middot; Confirm with Scenic</div></div>
+    </div>
+  </div>
+</div>
+<main id="main-content">
+
+<!-- ROME -->
+<section class="port-section active" id="port-rome" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Rome (Civitavecchia)</div><div class="port-country">Italy &middot; Lazio &middot; Embarkation Port</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Embarkation</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Port to Rome:</strong> Train Civitavecchia &rarr; Roma Termini (~1hr, &euro;5&ndash;8) &middot; Most flexible option</div>
+      <div class="quick-fact"><strong>Port to center:</strong> 10&ndash;15 min walk to Civitavecchia town</div>
+      <div class="quick-fact"><strong>April:</strong> 18&ndash;22&deg;C, ideal spring weather &middot; Lower crowds vs summer</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Rome &mdash; Pre-Cruise</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Colosseum &amp; Vatican:</strong> Book timed-entry tickets weeks in advance. April is busy &mdash; skip-the-line is essential.</span></div>
+      <div class="item"><div class="item-name">Vatican Museums &amp; Sistine Chapel</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Book ahead</span><div class="item-desc">Book timed-entry at museivaticani.va. Go at opening (9 AM) or late afternoon. The Sistine Chapel is at the end &mdash; allow 3+ hours. Combine with St. Peter's Basilica (free entry to the basilica itself).</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Vatican+Museums+Rome" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Vatican+Museums+Sistine+Chapel+history+Michelangelo" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Colosseum &amp; Roman Forum</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Book ahead</span><div class="item-desc">Book at coopculture.it. Combined ticket covers Colosseum, Roman Forum, and Palatine Hill. Go at opening (9 AM) or after 3 PM. Allow 3&ndash;4 hours for all three.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Colosseum+Rome" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Colosseum+Rome+history+gladiators+Roman+Empire" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Pantheon &amp; Piazza Navona</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The Pantheon (&euro;5 entry, book at pantheonroma.com) &mdash; the best-preserved ancient Roman building in the world, with the largest unreinforced concrete dome ever built. Piazza Navona is 5 min walk &mdash; Bernini's Fountain of the Four Rivers. Best in early morning.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pantheon+Rome" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Pantheon+Rome+history+Roman+concrete+dome+Hadrian" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Trastevere &amp; Campo de' Fiori Market</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-market">&#127978; Market</span><div class="item-desc">Trastevere is Rome's most atmospheric neighborhood &mdash; cobblestone lanes, ivy-covered buildings, excellent restaurants. Campo de' Fiori hosts a morning market (Mon&ndash;Sat, 7 AM&ndash;2 PM) with fresh produce, flowers, and local food. Combine both in a morning walk.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Campo+de+Fiori+Market+Rome" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128722;</span><span class="section-title">Civitavecchia Markets</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Mercato di San Lorenzo (Historic Market)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Piazza Regina Margherita &mdash; 10&ndash;15 min walk from the cruise terminal. Open every morning 7 AM&ndash;2 PM. Fresh fish, seasonal fruit and vegetables, typical products. Wednesday and Saturday: larger weekly market with olive oil, cheeses, cured meats, fresh catch. Perfect for embarkation day provisions.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mercato+San+Lorenzo+Civitavecchia" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Fish Market (Mercato Ittico)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">As a historic fishing port, Civitavecchia receives fresh seafood daily. Early mornings are best &mdash; fishermen selling anchovies, squid, octopus, sea bream. Mon&ndash;Sat 6 AM&ndash;1 PM. One of the most authentic experiences near the port.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mercato+Ittico+Civitavecchia" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh seafood, grilled fish, bruschetta (without cheese), pasta al pomodoro, grilled vegetables. Say "senza aglio" (no garlic) and "senza latticini" (no dairy). Frascati and Vermentino whites are excellent.</div>
+      <div class="item"><div class="item-name">Mercato Testaccio &mdash; Rome's Best Food Market</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Covered market in Testaccio neighborhood &mdash; excellent food stalls, fresh produce, local specialties. Mon&ndash;Sat. The authentic Roman food experience away from tourist areas.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mercato+Testaccio+Rome" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Italian Wines for Holly</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">Frascati (crisp white from Castelli Romani hills near Rome), Vermentino di Sardegna (excellent with seafood), Greco di Tufo (Campania white), Falanghina (floral and fresh). Avoid Chianti and Barolo (reds).</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Train to Rome</td><td>Civitavecchia station &rarr; Roma Termini. ~1 hr. &euro;5&ndash;8. Frequent departures. Most flexible option.</td></tr>
+        <tr><td>Taxi to Rome</td><td>~&euro;120&ndash;150 each way. Fixed rate. Good for groups.</td></tr>
+        <tr><td>On foot (Civitavecchia)</td><td>Forte Michelangelo, promenade, market &mdash; all walkable from port in 10&ndash;15 min.</td></tr>
+        <tr><td>Rome Metro</td><td>Lines A &amp; B. Termini is the hub. Colosseum = Colosseo (B). Vatican = Ottaviano (A).</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128279;</span><span class="section-title">Official Sources</span></div>
+    <div class="section-card-body">
+      <div class="official-links">
+        <a class="official-link" href="https://www.coopculture.it" target="_blank"><span class="official-link-icon">&#127981;</span><span class="official-link-text"><div class="official-link-name">coopculture.it</div><div class="official-link-desc">Colosseum &amp; Roman Forum &mdash; official tickets</div></span></a>
+        <a class="official-link" href="https://www.museivaticani.va" target="_blank"><span class="official-link-icon">&#9962;</span><span class="official-link-text"><div class="official-link-name">museivaticani.va</div><div class="official-link-desc">Vatican Museums &mdash; official tickets</div></span></a>
+        <a class="official-link" href="https://www.pantheonroma.com" target="_blank"><span class="official-link-icon">&#127963;</span><span class="official-link-text"><div class="official-link-name">pantheonroma.com</div><div class="official-link-desc">Pantheon &mdash; official tickets</div></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONIFACIO -->
+<section class="port-section" id="port-bonifacio" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Bonifacio</div><div class="port-country">France &middot; Corsica &middot; Southern Tip</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">&#9888; Wind watch</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Tender to:</strong> Quai Sotta Portigliola &mdash; marina at base of cliffs</div>
+      <div class="quick-fact"><strong>To citadel:</strong> 15&ndash;25 min steep climb or Le Petit Train (small fee)</div>
+      <div class="quick-fact"><strong>&#9888; Wind:</strong> Strait of Bonifacio is notoriously windy &mdash; Mistral can cancel tenders</div>
+      <div class="quick-fact"><strong>April:</strong> ~17&deg;C, pleasant spring &mdash; pre-season quiet</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Haute Ville (Citadel) &mdash; Medieval Old Town</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Founded 830 AD &mdash; one of Corsica's most atmospheric medieval towns perched on soaring white limestone cliffs. Walk Porte de G&ecirc;nes, Sainte-Marie-Majeure church, Bastion de l'Etendard viewpoint, and the Marine Cemetery. The view from the citadel walls over the strait toward Sardinia is extraordinary.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Bonifacio+Haute+Ville+Corsica" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Bonifacio+Corsica+history+citadel+medieval+founded+830" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">King of Aragon's Staircase</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">187 steps carved directly into the cliff face &mdash; legend says cut in a single night during the 1420 Aragonese siege. Descend from the Old Town to a rocky ledge above the sea. Views back up to the citadel are extraordinary. Strenuous &mdash; wear sturdy shoes.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=King+of+Aragon+Staircase+Bonifacio" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=King+of+Aragon+Staircase+Bonifacio+1420+siege+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Cliff &amp; Sea Cave Boat Tour</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The essential Bonifacio experience &mdash; circle the limestone cliffs by boat, drift through the Sdragonato sea cave (ceiling hole shaped like Corsica) and marvel at the citadel from the water. 60&ndash;90 min. Book at marina kiosks as soon as you tender &mdash; fills fast in season.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Bonifacio+Marina+Corsica" target="_blank">&#128205; Marina</a></div></div>
+      <div class="item"><div class="item-name">Lavezzi Islands &mdash; Snorkeling</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">30&ndash;40 min boat ride to the Lavezzi Islands nature reserve &mdash; granite islets, turquoise lagoons, some of the clearest water in the Mediterranean. 3&ndash;4 hours. Book at the marina. April water is cool but crystal clear.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Lavezzi+Islands+Corsica" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Capo Pertusato Coastal Path</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">3 km each way from Col Saint-Roch at the top of the old town &mdash; follows limestone cliffs to the southernmost tip of Corsica with sweeping views of the strait and Sardinia. Easy&ndash;moderate. 1.5&ndash;2 hrs each way.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Capo+Pertusato+Bonifacio+Corsica" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Corsican seafood &mdash; grilled fish, langoustines, sea urchin (oursin). Say "sans ail" (no garlic). Corsican Vermentino (white) and Muscat are excellent. Avoid charcuterie (pork-heavy). Chestnut-based products are dairy-free.</div>
+      <div class="item"><div class="item-name">Eat in the Haute Ville &mdash; Not the Marina</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Marina restaurants are convenient but pricier and more touristy. Climb up and find a table in the citadel streets for better food at fairer prices. Look for restaurants serving Corsican specialties &mdash; fresh fish, chestnut dishes.</div></div>
+      <div class="item"><div class="item-name">Corsican Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Corsican Vermentino (crisp, mineral, excellent with seafood), Muscat du Cap Corse (sweet white &mdash; aperitif style), Patrimonio Blanc. Look for Domaine Orenga de Gaffory and Clos Canarelli labels.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Marina shops at tender dock. Citadel is 15&ndash;25 min steep climb on stairs and cobbles.</td></tr>
+        <tr><td>Le Petit Train</td><td>Tourist train between marina and Haute Ville gate. Small fee. Easy alternative to the climb.</td></tr>
+        <tr><td>Taxi</td><td>Wait near the marina. Agree fare before sitting. No Uber in Bonifacio.</td></tr>
+        <tr><td>Boat tours</td><td>Cliff, sea-cave, and Lavezzi Islands boats leave from marina all day. Book early.</td></tr>
+        <tr><td>&#9888; Wind</td><td>Strait of Bonifacio is notoriously windy &mdash; Mistral can cancel tenders. Check ship announcements.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PORTO CERVO -->
+<section class="port-section" id="port-portocervo" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Porto Cervo</div><div class="port-country">Italy &middot; Sardinia &middot; Costa Smeralda</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Pre-season quiet</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Access:</strong> Ship docks in Porto Cervo marina &mdash; Piazzetta is steps away</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (marina/Piazzetta), taxi/rental (beaches, San Pantaleo)</div>
+      <div class="quick-fact"><strong>April:</strong> ~18&deg;C, pre-season &mdash; relaxed, uncrowded, best prices</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127958;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Porto Cervo Marina &amp; Piazzetta</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The Aga Khan's 1960s vision &mdash; a low-slung pastel village with terracotta roofs, curved lines, and hidden courtyards. Walk the Promenade du Port, the Piazzetta above the old port, and the marina. In April, the superyachts are arriving but the crowds haven't &mdash; perfect timing for photography and relaxed exploration.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Porto+Cervo+Marina+Sardinia" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Porto+Cervo+Costa+Smeralda+history+Aga+Khan+1960s" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">San Pantaleo Village Market</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">15 min by taxi inland &mdash; a charming hilltop village with a Thursday and Sunday market. Local Sardinian products: olive oil, bottarga (mullet roe &mdash; a Holly-safe delicacy), honey, ceramics. The village square has excellent local restaurants at a fraction of Porto Cervo prices.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=San+Pantaleo+Sardinia+market" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Piccolo Pevero Beach</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Early swim in glass-clear water before the first tender arrives &mdash; the classic Porto Cervo experience. Short taxi or walk from the marina. In April the water is cool but the beach is empty and the light is extraordinary.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Piccolo+Pevero+Beach+Porto+Cervo" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Maddalena Archipelago &mdash; by Boat</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">An hour north by boat &mdash; granite islets, turquoise lagoons, and water that photographs like the Caribbean. Day boats run from Porto Cervo marina. The Scenic Ikon's Zodiacs may offer excursions here &mdash; check with the ship's Discovery Team.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Maddalena+Archipelago+Sardinia" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Bottarga (mullet roe &mdash; excellent on pasta or alone), fresh grilled fish, seafood pasta, Sardinian flatbread pane carasau (dairy-free). Say "senza aglio" (no garlic). Vermentino di Gallura is the local white wine &mdash; excellent with seafood.</div>
+      <div class="item"><div class="item-name">Old Port Restaurants &mdash; Piazzetta</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">The old port and Piazzetta keep the classic Sardinian tables &mdash; seafood, bottarga, Vermentino from the hills behind. In April, you can walk in without a reservation.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Porto+Cervo+Piazzetta+restaurants" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Vermentino di Gallura</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">Sardinia's finest white wine &mdash; DOCG status, grown in the granite hills behind Porto Cervo. Crisp, mineral, floral, with a slight bitter finish. Perfect with bottarga and fresh fish. Look for Capichera and Surrau labels.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Marina, Piazzetta, and old port all walkable from the ship.</td></tr>
+        <tr><td>Taxi</td><td>Available at the marina. Agree fare first. San Pantaleo ~15 min, Pevero beaches ~10 min.</td></tr>
+        <tr><td>Boat</td><td>Day boats from marina to Maddalena Archipelago and coastal coves. Book at marina.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SORRENTO -->
+<section class="port-section" id="port-sorrento" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Sorrento</div><div class="port-country">Italy &middot; Campania &middot; Bay of Naples</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Elevator &euro;1.20</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Tender to:</strong> Marina Piccola &mdash; at base of 50m cliffs</div>
+      <div class="quick-fact"><strong>To town:</strong> Public elevator &euro;1.20 (3 min) or steep 10&ndash;12 min walk up</div>
+      <div class="quick-fact"><strong>&#9888; Bay swell</strong> can cancel tenders &mdash; stop sometimes swapped for Naples</div>
+      <div class="quick-fact"><strong>April:</strong> ~18&deg;C, ideal &mdash; Pompeii and Capri without summer crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Pompeii:</strong> Tickets are nominative &mdash; book names in advance at vivaticket.com. Daily cap of 20,000 visitors. April is busy but manageable.</span></div>
+      <div class="item"><div class="item-name">Pompeii Archaeological Park</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Book ahead</span><div class="item-desc">Circumvesuviana train from Sorrento station &rarr; Pompei Scavi (30&ndash;40 min, &euro;3.30). Book nominative tickets at vivaticket.com before sailing. Allow 3+ hours at the ruins. No shade &mdash; hat, water, real shoes essential.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pompeii+Archaeological+Park+Italy" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Pompeii+history+79AD+Vesuvius+eruption+Roman+city" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Capri by Hydrofoil</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Hydrofoil from Marina Piccola (same pier as tender) &mdash; 20&ndash;25 min, &euro;22&ndash;25 each way. Buy return leg when you buy outbound &mdash; afternoon boats sell out. Ride the chairlift to Monte Solaro for panoramic views. Explore the glamorous Piazzetta.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Capri+Island+Italy" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Capri+island+history+Roman+emperors+Blue+Grotto" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Sorrento Old Town &amp; Via San Cesareo</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">Piazza Tasso, the 14th-century Cloister of San Francesco, and the lemon-and-ceramic lanes of Via San Cesareo &mdash; all 10 min from the top of the elevator. Free fountains in the Villa Comunale gardens with views across the Bay of Naples to Vesuvius.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Piazza+Tasso+Sorrento" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Positano by Coast Bus</div><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">SITA Sud coast bus from Piazza Tasso &rarr; Positano (50&ndash;60 min, &euro;2.60). Buy tickets at a tabacchi first &mdash; never sold on board. Sit on the right going out. The most dramatic coastal road in Italy.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Positano+Amalfi+Coast+Italy" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Marina Grande &mdash; Fishing Quarter</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">10 min downhill walk west of the center &mdash; painted houses, a pebble beach, and terrace trattorias serving whatever the boats landed that morning. Da Emilia (family-run since 1947) and Bagni Delfino (terrace over the water) are the standouts.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Marina+Grande+Sorrento" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh grilled fish at Marina Grande, limoncello (dairy-free), fresh lemon granita. Say "senza aglio e senza latticini" (no garlic, no dairy). Falanghina and Greco di Tufo whites are excellent.</div>
+      <div class="item"><div class="item-name">Limoncello</div><div class="item-desc">Made from the huge Sorrento lemons (IGP protected). Drink it ice-cold after a meal. Buy a bottle from any producer along Via San Cesareo &mdash; limoncello is cheaper two streets inland from the tourist strip.</div></div>
+      <div class="item"><div class="item-name">Campanian Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Falanghina del Sannio (floral, fresh, excellent with seafood), Greco di Tufo (mineral, complex), Fiano di Avellino (elegant white). All from the Campania hills &mdash; among Italy's finest whites.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Elevator</td><td>Marina Piccola &rarr; Villa Comunale. &euro;1.20 one-way, &euro;2.20 round trip. Buy round trip. 3 min.</td></tr>
+        <tr><td>Circumvesuviana</td><td>Sorrento station &rarr; Pompei Scavi. &euro;3.30 each way. 30&ndash;40 min.</td></tr>
+        <tr><td>Hydrofoil (Capri)</td><td>Marina Piccola &rarr; Capri. &euro;22&ndash;25 each way. 20&ndash;25 min. Buy return leg outbound.</td></tr>
+        <tr><td>SITA bus (Amalfi)</td><td>Piazza Tasso &rarr; Positano. &euro;2.60. Buy at tabacchi. Sit right side going out.</td></tr>
+        <tr><td>&#9888; Return buffer</td><td>Count backwards from last tender time. Add 45 min buffer for Capri/Pompeii return.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128279;</span><span class="section-title">Official Sources</span></div>
+    <div class="section-card-body">
+      <div class="official-links">
+        <a class="official-link" href="https://www.vivaticket.com" target="_blank"><span class="official-link-icon">&#127981;</span><span class="official-link-text"><div class="official-link-name">vivaticket.com</div><div class="official-link-desc">Pompeii &mdash; official nominative tickets (book before sailing)</div></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYRACUSE -->
+<section class="port-section" id="port-syracuse" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Syracuse (Siracusa)</div><div class="port-country">Italy &middot; Sicily &middot; UNESCO World Heritage</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">DIY 9/10</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Molo Sant'Antonio &mdash; 8 min walk to Ortigia old town</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (Ortigia), taxi (Neapolis Park, Noto)</div>
+      <div class="quick-fact"><strong>&#9888; Greek Theatre:</strong> May be closed mid-May to early July for classical drama festival &mdash; check dates</div>
+      <div class="quick-fact"><strong>April:</strong> ~20&deg;C, ideal &mdash; one of the best times to visit Sicily</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Ortigia Island &mdash; Old Town</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The ancient island heart of Syracuse &mdash; 8 min walk from the dock across the Umbertino bridge. Piazza del Duomo (the cathedral built inside a Greek temple &mdash; columns visible in the walls), the Fonte Aretusa (freshwater spring by the sea, papyrus plants), and the labyrinthine medieval lanes. One of the most beautiful old towns in Italy.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ortigia+Syracuse+Sicily" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Ortigia+Syracuse+Sicily+history+Greek+colony+Archimedes" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Ortigia Market (Mercato di Ortigia)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">One of Sicily's best food markets &mdash; Via Trento and Via Emanuele de Benedictis in Ortigia. Fresh swordfish, tuna, sea urchins, blood oranges, capers, olives, pistachios. Mon&ndash;Sat morning. Arrive early for the best selection.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mercato+di+Ortigia+Syracuse+Sicily" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Neapolis Archaeological Park</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">Greek Theatre (5th century BC &mdash; one of the largest in the ancient world), the Ear of Dionysius (enormous limestone cave with extraordinary acoustics), and the Roman Amphitheatre. Short taxi ride from the port. Check if the Greek Theatre is open (closed mid-May to early July for drama festival).</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Neapolis+Archaeological+Park+Syracuse+Sicily" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Syracuse+Greek+Theatre+Neapolis+history+Dionysius" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Noto &mdash; Baroque Town (Day Trip)</div><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">30 min by taxi &mdash; the finest Baroque town in Sicily, rebuilt entirely after the 1693 earthquake in golden limestone. The main street (Corso Vittorio Emanuele) is a UNESCO World Heritage site. Best in morning light. Caff&egrave; Sicilia (since 1892) is legendary for granita and pastries.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Noto+Sicily+Baroque" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Noto+Sicily+Baroque+architecture+1693+earthquake+UNESCO" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Swordfish (pesce spada), fresh tuna, sea urchin pasta (ask without butter), caponata (sweet-sour aubergine &mdash; check for garlic), granita di limone. Say "senza aglio e senza latticini". Etna Bianco and Grillo whites are excellent.</div>
+      <div class="item"><div class="item-name">Sicilian Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Etna Bianco (volcanic white from Mount Etna &mdash; mineral, complex, one of Italy's most exciting whites), Grillo (crisp Sicilian white), Catarratto (fresh, citrusy). Look for Benanti and Cornelissen labels for Etna Bianco.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Ortigia is 8 min walk from the dock. The entire old town is walkable.</td></tr>
+        <tr><td>Taxi</td><td>Neapolis Park ~10 min, Noto ~30 min. Agree fare first. Available at port.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MALTA -->
+<section class="port-section" id="port-malta" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Malta (Valletta)</div><div class="port-country">Malta &middot; Capital City &middot; UNESCO World Heritage</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Valletta Cruise Port &mdash; Grand Harbour, steps from the city gate</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (Valletta), ferry (Three Cities), bus (Mdina, Marsaxlokk)</div>
+      <div class="quick-fact"><strong>April:</strong> ~20&deg;C, ideal &mdash; spring wildflowers, low crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Valletta &mdash; Europe's Smallest Capital</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Built by the Knights of St. John after the Great Siege of 1565 &mdash; the entire city is a UNESCO World Heritage site. Walk Republic Street from the City Gate to Fort St. Elmo. The Upper Barrakka Gardens offer the finest view of the Grand Harbour.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Valletta+Malta" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Valletta+Malta+history+Knights+of+St+John+Great+Siege+1565" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">St. John's Co-Cathedral</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The most ornate Baroque interior in the world &mdash; every inch of the floor is a marble tombstone of a Knight. Caravaggio's "The Beheading of Saint John the Baptist" (his largest work and only signed painting) is here. Book tickets at stjohnscocathedral.com. &euro;15 entry.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=St+John+Co-Cathedral+Valletta+Malta" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=St+Johns+Co-Cathedral+Valletta+Caravaggio+Knights+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Three Cities &mdash; by Ferry</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Birgu, Senglea, and Cospicua &mdash; the fortified cities across the Grand Harbour. Ferry from the Lower Barrakka Gardens (&euro;1.50 each way). Birgu (Vittoriosa) has the Inquisitor's Palace and Fort St. Angelo. Far less touristy than Valletta &mdash; authentic Maltese life.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Birgu+Three+Cities+Malta" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Three+Cities+Malta+Birgu+Vittoriosa+history+Knights" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Mdina &mdash; Silent City</div><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">30 min by bus &mdash; Malta's ancient walled capital, population ~300. Car-free, honey-colored limestone, cathedral, and extraordinary views across the island. Best in early morning before day-trippers arrive. Combine with Rabat (catacombs) next door.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mdina+Malta+Silent+City" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Mdina+Malta+Silent+City+history+ancient+capital" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Marsaxlokk Fish Market (Sunday)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Malta's most famous market &mdash; Sunday morning fish market in the colorful fishing village of Marsaxlokk. Traditional luzzu fishing boats (painted with the Eye of Osiris) fill the harbor. Fresh fish, seafood, local produce. 30 min by bus from Valletta.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Marsaxlokk+Fish+Market+Malta" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish (lampuki &mdash; dolphinfish, Malta's national fish), grilled octopus, seafood pasta, ftira (Maltese bread with tuna and capers &mdash; ask without cheese). English is widely spoken &mdash; just say "without garlic" and "no cheese". Maltese whites from Marsovin are improving.</div>
+      <div class="item"><div class="item-name">Strait Street &mdash; Valletta Dining</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">The old "Gut" &mdash; sailors' entertainment strip, now restaurants and bars. The area around St. John's Square has the best concentration of restaurants. Avoid tourist traps on Republic Street. Nenu the Artisan Baker for traditional Maltese ftira.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Strait+Street+Valletta+Malta" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Valletta is compact and entirely walkable from the cruise port.</td></tr>
+        <tr><td>Ferry (Three Cities)</td><td>Lower Barrakka Gardens &rarr; Birgu. &euro;1.50 each way. 5 min crossing.</td></tr>
+        <tr><td>Bus</td><td>Valletta bus terminus &rarr; Mdina (Route 51/52, ~30 min, &euro;1.50) &middot; Marsaxlokk (Route 81, ~30 min)</td></tr>
+        <tr><td>Taxi / Bolt</td><td>Available throughout. Bolt app works well in Malta.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128279;</span><span class="section-title">Official Sources</span></div>
+    <div class="section-card-body">
+      <div class="official-links">
+        <a class="official-link" href="https://www.stjohnscocathedral.com" target="_blank"><span class="official-link-icon">&#9962;</span><span class="official-link-text"><div class="official-link-name">stjohnscocathedral.com</div><div class="official-link-desc">St. John's Co-Cathedral &mdash; tickets &amp; opening hours</div></span></a>
+        <a class="official-link" href="https://www.visitmalta.com" target="_blank"><span class="official-link-icon">&#127758;</span><span class="official-link-text"><div class="official-link-name">visitmalta.com</div><div class="official-link-desc">Official Malta tourism</div></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANIA -->
+<section class="port-section" id="port-chania" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Chania</div><div class="port-country">Greece &middot; Crete &middot; Western Crete</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Souda Bay port</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Souda Bay &mdash; 7 km from Chania old town (taxi or bus)</div>
+      <div class="quick-fact"><strong>To old town:</strong> Taxi ~&euro;15 (15 min) or bus &euro;1.70 (20 min)</div>
+      <div class="quick-fact"><strong>April:</strong> ~20&deg;C, ideal &mdash; spring wildflowers, Samaria Gorge opens May 1</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Venetian Harbour &amp; Old Town</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">One of the most beautiful harbors in Greece &mdash; the Venetian lighthouse, the curved harbor wall, and the mix of Venetian, Ottoman, and Greek architecture. Walk the harbor front, explore the covered market (Agora), and wander the Splantzia and Topanas neighborhoods. Best in early morning before day-trippers arrive.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Chania+Venetian+Harbour+Crete" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Chania+Crete+history+Venetian+Ottoman+Minoan" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Chania Municipal Market (Agora)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Cross-shaped covered market built in 1913 &mdash; Cretan olive oil (among the world's finest), thyme honey, dried herbs, fresh fish, local cheeses (Holly avoid), carob products. Mon&ndash;Sat 8 AM&ndash;3 PM. The best place to buy Cretan olive oil to take home.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Chania+Municipal+Market+Agora+Crete" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Balos Lagoon &amp; Gramvousa</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">One of the most photographed beaches in Greece &mdash; turquoise lagoon, pink sand, Venetian castle on the island. Boat trip from Kissamos port (45 min west of Chania by taxi). Half-day. Book at Kissamos port or through the ship. April water is cool but the lagoon is spectacular.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Balos+Lagoon+Crete" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Samaria Gorge (Full Day &mdash; opens May 1)</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">Europe's longest gorge &mdash; 16 km walk through the White Mountains to the Libyan Sea. Opens May 1 (check exact date for 2028). Bus from Chania to Xyloskalo (1 hr), walk the gorge (4&ndash;6 hrs), boat from Agia Roumeli to Hora Sfakion, bus back to Chania. Only if port time allows 10+ hours.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Samaria+Gorge+Crete" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Samaria+Gorge+Crete+longest+gorge+Europe+White+Mountains" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Cretan cuisine is Mediterranean at its finest. Fresh fish, grilled octopus, dakos (barley rusk with tomato &mdash; ask without cheese), fresh vegetables with olive oil. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic) and "&#967;&#969;&#961;&#943;&#962; &#964;&#965;&#961;&#943;" (no cheese). Cretan olive oil is world-class &mdash; buy some at the Agora.</div>
+      <div class="item"><div class="item-name">Cretan Olive Oil</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Crete produces some of the world's finest extra virgin olive oil &mdash; Kolymvari PDO from western Crete is particularly prized. Buy at the Agora market. Look for cold-pressed, early harvest varieties. Excellent to take home.</div></div>
+      <div class="item"><div class="item-name">Cretan Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Vidiano (crisp Cretan white &mdash; floral, mineral), Thrapsathiri (light, fresh white), Muscat of Spinas. Look for Lyrarakis and Douloufakis wineries. Avoid Kotsifali (red). Cretan wine is seriously underrated.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Taxi (Souda &rarr; Chania)</td><td>~&euro;15, 15 min. Most convenient. Available at port.</td></tr>
+        <tr><td>Bus (Souda &rarr; Chania)</td><td>&euro;1.70, 20 min. Bus stop outside port gate. Frequent service.</td></tr>
+        <tr><td>Taxi (Chania &rarr; Kissamos)</td><td>~&euro;45, 45 min. For Balos Lagoon boat trips.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ALEXANDRIA -->
+<section class="port-section" id="port-alexandria" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Alexandria</div><div class="port-country">Egypt &middot; Mediterranean Coast &middot; Gateway to the Pyramids</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">EGP Pound</span><span class="badge badge-tip">Passport required</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Western Harbour Cruise Quay &mdash; 2 km from city center (taxi/Uber)</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Uber/Careem (transparent pricing), taxi (negotiate before entering)</div>
+      <div class="quick-fact"><strong>&#9888; Cairo/Pyramids:</strong> 3+ hours each way &mdash; only realistic with 10+ hours in port</div>
+      <div class="quick-fact"><strong>Passport:</strong> Required to exit port &mdash; visa typically handled onboard</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Cairo &amp; Pyramids:</strong> 3+ hours each way. Only realistic with 10+ hours in port. Book a private driver/guide in advance. The ship will NOT wait for independent travelers who are late.</span></div>
+      <div class="item"><div class="item-name">Pyramids of Giza &amp; Grand Egyptian Museum</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Book ahead</span><div class="item-desc">The last surviving ancient wonder of the world. Giza entry EGP 700 (~&euro;14). The Grand Egyptian Museum (GEM) &mdash; opened 2023, the world's largest archaeological museum &mdash; houses the complete Tutankhamun collection. GEM entry EGP 1,590 (~&euro;32). Arrive early morning to beat heat and crowds. Pre-book a private driver from Alexandria (3 hrs each way).</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pyramids+of+Giza+Egypt" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Pyramids+of+Giza+history+ancient+wonder+pharaohs+Khufu" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Bibliotheca Alexandrina</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">Stunning modern library and cultural center honoring the ancient Library of Alexandria &mdash; one of the greatest libraries of the ancient world. EGP 120 (~&euro;2.50) entry. Allow 90 min. Best visited in the morning before tour groups arrive. 15 min by Uber from the port.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Bibliotheca+Alexandrina+Egypt" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Library+of+Alexandria+ancient+history+Bibliotheca+Alexandrina" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Citadel of Qaitbay</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">15th-century fortress built on the site of the ancient Lighthouse of Alexandria (one of the Seven Wonders of the Ancient World). EGP 100 (~&euro;2) entry. Best in morning or late afternoon for light. The harbor views are excellent.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Citadel+of+Qaitbay+Alexandria+Egypt" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Citadel+Qaitbay+Alexandria+Lighthouse+Seven+Wonders+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Catacombs of Kom el-Shoqafa</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">A fascinating blend of Egyptian and Greco-Roman funerary art in underground chambers &mdash; one of the Seven Wonders of the Middle Ages. EGP 100 (~&euro;2) entry. 45 min. Underground site unaffected by weather. Combine with Pompey's Pillar nearby.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Catacombs+Kom+el-Shoqafa+Alexandria" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Catacombs+Kom+el-Shoqafa+Alexandria+Greco-Roman+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Stanley Bridge &amp; Corniche Waterfront</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Alexandria's scenic Mediterranean seafront promenade. Late afternoon is best for golden light. The Fish Market Restaurant near Qaitbay Citadel is legendary for fresh grilled seafood &mdash; choose your fish from the market below.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Stanley+Bridge+Alexandria+Egypt" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127978;</span><span class="section-title">Markets</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Attarine Market</div><span class="item-tag tag-market">&#127978; Market</span><div class="item-desc">Alexandria's most atmospheric marketplace &mdash; vendors selling fresh produce, spices, herbs, and crafts for generations. Particularly lively in early morning when fishermen bring their catches directly from boats. Near the old city center.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Attarine+Market+Alexandria+Egypt" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Alexandria's seafood is exceptional &mdash; fresh grilled fish, calamari, prawns, sayadeya (fish with rice and spices). Say "&#1576;&#1583;&#1608;&#1606; &#1579;&#1608;&#1605;" (no garlic). Avoid koshary (has garlic), fatta (has garlic and dairy). Fresh fruit juices are excellent. Note: Egypt is predominantly Muslim &mdash; alcohol limited to hotel restaurants.</div>
+      <div class="item"><div class="item-name">Fish Market Restaurant &mdash; Qaitbay Harbor</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Legendary among locals &mdash; choose your fish from the market below, select your preparation method (grilled is best), and enjoy it moments later with hummus and muttabal. Simple format, excellent quality, reasonable prices. Near the Qaitbay Citadel.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Fish+Market+Restaurant+Alexandria+Qaitbay" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Uber / Careem</td><td>Most reliable &mdash; transparent pricing. Works throughout Alexandria. Best option.</td></tr>
+        <tr><td>Taxi</td><td>Plentiful at terminal. NOT metered &mdash; negotiate fare BEFORE getting in. Typical to downtown: EGP 150&ndash;250.</td></tr>
+        <tr><td>Private driver (Cairo)</td><td>Pre-book for Pyramids day trip. ~&euro;80&ndash;120 for a private car + driver. 3 hrs each way.</td></tr>
+        <tr><td>&#9888; Cairo warning</td><td>Ship will NOT wait for independent travelers who are late. Only attempt with 10+ hours in port.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- RHODES -->
+<section class="port-section" id="port-rhodes" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Rhodes</div><div class="port-country">Greece &middot; Dodecanese &middot; Knights' Medieval Citadel</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Check berth</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Berth varies:</strong> Kolona (5&ndash;15 min walk to Old Town) or Akandia (15&ndash;20 min walk, no shade)</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (Old Town), taxi/KTEL bus (Lindos, Kallithea)</div>
+      <div class="quick-fact"><strong>&#9888; Taxis:</strong> Dark-blue cabs &mdash; agree fare BEFORE getting in</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; pre-peak season, manageable crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Medieval Old Town (UNESCO)</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Europe's oldest continuously inhabited medieval city &mdash; ringed by 14th-century Knights' walls. Walk the cobbled Street of the Knights (the best-preserved medieval street in Europe), Hippocrates Square, and the Jewish Quarter. Free to roam &mdash; just steps from the pier. Wear sneakers &mdash; polished cobbles are slippery.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Rhodes+Old+Town+Medieval+City" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Rhodes+Medieval+Old+Town+Knights+of+St+John+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Palace of the Grand Master</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">The fortress-palace of the Knights of St. John &mdash; famous for Hellenistic and Christian-era mosaic floors. &euro;20 combo ticket includes the adjacent Archaeological Museum. Go before 10 AM to beat lines. Open daily 8 AM&ndash;8 PM in summer.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Palace+Grand+Master+Rhodes+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Palace+Grand+Master+Rhodes+Knights+Hospitallers+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Kallithea Springs</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">1920s Italian Art Deco thermal spa with domed rotunda, pebble mosaics, and palm gardens &mdash; plus a sheltered cove with crystal water for swimming and snorkeling. &euro;5 entry. Bus &euro;2.50 or taxi. The easiest culture-plus-beach combo near town. Bring water shoes for the rocky seabed.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kallithea+Springs+Rhodes+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Acropolis of Lindos (with 8+ hours)</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Clifftop Temple of Athena inside a Knights' fortress, above whitewashed Lindos village and heart-shaped St. Paul's Bay. ~50 km south (~1 hr each way). Book timed-entry ahead at hhticket.gr. Steep marble climb. Only realistic with 8+ hours ashore.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Acropolis+of+Lindos+Rhodes+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Lindos+Acropolis+Rhodes+Temple+Athena+history" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, mussels saganaki (ask without cheese), seafood meze. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic) and "&#967;&#969;&#961;&#943;&#962; &#964;&#965;&#961;&#943;" (no cheese). Rhodian Athiri white wine is excellent with seafood.</div>
+      <div class="item"><div class="item-name">Nireas &mdash; Old Town</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Best seafood in the Old Town walls &mdash; Sofokleous Street. Try mussels saganaki (ask without cheese), fresh fish, grilled octopus. Consistently rated the top seafood restaurant in the Old Town.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Nireas+Restaurant+Rhodes+Old+Town" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Rhodian Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Rhodian Athiri (crisp, mineral white &mdash; the island's signature grape), Muscat of Rhodes (sweet white &mdash; aperitif). CAIR winery is the main producer. Avoid Mandilaria (red).</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Old Town gates 5&ndash;15 min walk from Kolona pier. Akandia pier is 15&ndash;20 min walk (no shade).</td></tr>
+        <tr><td>Taxi</td><td>Dark-blue cabs. Agree fare BEFORE getting in. Port pickup adds ~&euro;1.20 surcharge.</td></tr>
+        <tr><td>KTEL bus</td><td>To Lindos from near the New Market. &euro;5.50 each way vs ~&euro;70 taxi. Check schedule.</td></tr>
+        <tr><td>&#9888; Return buffer</td><td>Lindos is 1 hr away &mdash; leave by 3:30 PM for a 5 PM all-aboard. Akandia pier adds 20 min.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MYKONOS -->
+<section class="port-section" id="port-mykonos" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Mykonos</div><div class="port-country">Greece &middot; Cyclades &middot; Iconic Cycladic Jewel</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender/Dock</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">&euro;12 cruise levy</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock or tender:</strong> New Port (Tourlos, 2.5 km from town) or tender to Old Port (right in Chora)</div>
+      <div class="quick-fact"><strong>From New Port:</strong> SeaBus &euro;2.50 (8 min) or shuttle &euro;2 &mdash; do NOT walk (no sidewalk)</div>
+      <div class="quick-fact"><strong>April/May levy:</strong> &euro;12/person charged to onboard account</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~20&deg;C, pre-season &mdash; relaxed, uncrowded, best prices</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127958;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Mykonos Town (Chora) &mdash; Walking</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Whitewashed labyrinth of narrow lanes designed to confuse pirates. See the iconic Kato Mili windmills (16th century), the five-in-one Paraportiani Church, and Little Venice's sea-edge bars. Best explored on foot &mdash; allow 2&ndash;3 hours to wander properly. In April, the town is relaxed and uncrowded.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Mykonos+Town+Chora+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Mykonos+windmills+history+Cycladic+architecture+pirates" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Delos Island (UNESCO)</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">Sacred birthplace of Apollo &mdash; entire island is an open-air archaeological museum with ruins dating to 3000 BC. See the Terrace of Lions, House of Dionysos mosaics, and the on-site museum. Boats depart Old Port only. &euro;45 DIY / &euro;79 guided. Zero shade &mdash; bring hat, water, sunscreen. 4&ndash;5 hours total.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Delos+Island+Greece+UNESCO" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Delos+Island+Greece+birthplace+Apollo+ancient+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Ano Mera Village</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">The island's only inland village, 8 km east &mdash; 16th-century Panagia Tourliani monastery with ornate marble carvings. The tree-shaded village square is lined with authentic tavernas serving local dishes at a fraction of Chora prices. Bus &euro;1.80. A quieter, real-Greece experience.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ano+Mera+Village+Mykonos" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Ornos Beach</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Best family-friendly beach closest to town &mdash; calm, sheltered waters ideal for swimming. Multiple beach clubs and tavernas. Lounge chairs &euro;25&ndash;50. Bus &euro;1.80 from Fabrika. In April, the beach is uncrowded and the water is clear.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ornos+Beach+Mykonos+Greece" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, seafood meze. Eat in Ano Mera (40&ndash;50% cheaper than Chora). Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Step back one street from the waterfront for better food at lower prices.</div>
+      <div class="item"><div class="item-name">To Maereio &mdash; Chora</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Homemade Greek classics &mdash; locals' favorite. Traditional taverna food at reasonable prices. One street back from the waterfront. In April, you can walk in without a reservation.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=To+Maereio+Mykonos+Town" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>SeaBus</td><td>New Port &rarr; Old Port. &euro;2.50. 8 min. Every 20&ndash;30 min. Do NOT walk from New Port.</td></tr>
+        <tr><td>KTEL bus</td><td>&euro;1.80&ndash;2.80. Frequent in season. Fabrika hub for beaches. Ano Mera 20 min.</td></tr>
+        <tr><td>Water taxi day pass</td><td>&euro;20 for 7 south beaches. Good value for a beach day.</td></tr>
+        <tr><td>Taxi</td><td>Only ~35 taxis on the island &mdash; scarce on cruise days. Book ahead if possible.</td></tr>
+        <tr><td>Delos ferry</td><td>From Old Port only. 30&ndash;40 min. Check departure times &mdash; last boat back matters.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ATHENS -->
+<section class="port-section" id="port-athens" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Athens (Piraeus)</div><div class="port-country">Greece &middot; Capital City &middot; Birthplace of Democracy</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Piraeus &mdash; Metro Line 1 (Green) to Athens center (40 min, &euro;1.20)</div>
+      <div class="quick-fact"><strong>To Monastiraki:</strong> Metro from Piraeus station (5 min walk from most berths)</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; spring light on the Acropolis is extraordinary</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Acropolis:</strong> Visit first thing in the morning or after 3 PM. Midday heat and crowds (11 AM&ndash;2 PM) make it miserable. Buy combined ticket (&euro;30) to skip the main queue.</span></div>
+      <div class="item"><div class="item-name">The Acropolis &amp; Parthenon</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">One of the most awe-inspiring sights in the world. The &euro;30 combined ticket covers the Acropolis, Ancient Agora, Roman Forum, and more &mdash; valid 5 days. Go at opening or after 3 PM. The Erechtheion (Caryatid porch), Theatre of Dionysus, and the Propylaea are as compelling as the Parthenon itself.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Acropolis+Athens+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Acropolis+Athens+Parthenon+history+ancient+Greece+Pericles" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Acropolis Museum</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">World-class museum at the foot of the hill &mdash; the glass floor revealing excavations below is extraordinary. The Parthenon Gallery (top floor) displays the surviving frieze with the missing Elgin Marbles' spaces deliberately left empty. Allow 2 hours. Covered by the combined ticket.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Acropolis+Museum+Athens+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Acropolis+Museum+Athens+Elgin+Marbles+Parthenon+frieze" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Plaka &amp; Anafiotika</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Anafiotika feels like a Cycladic island village transplanted into the city &mdash; whitewashed houses and narrow lanes built by Cycladic craftsmen in the 19th century. Plaka below is the old neighborhood with tavernas and neoclassical houses. Best explored in the morning before the heat builds.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Anafiotika+Athens+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Anafiotika+Athens+Cycladic+neighborhood+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Ancient Agora &amp; Temple of Hephaestus</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">The marketplace of ancient Athens &mdash; where Socrates walked and democracy was debated. The Temple of Hephaestus is the best-preserved ancient Greek temple anywhere. Covered by the combined ticket. Combine with a walk through Monastiraki Flea Market (best on Sundays).</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ancient+Agora+Athens+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Ancient+Agora+Athens+Socrates+democracy+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Monastiraki Flea Market</div><span class="item-tag tag-market">&#127978; Market</span><div class="item-desc">Bustling street market around Monastiraki Square &mdash; antiques, souvenirs, and street food. Best on Sundays when the full flea market is open. Right below the Acropolis &mdash; combine with the archaeological sites. Souvlaki at Kosta or O Thanasis for &euro;3&ndash;4.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Monastiraki+Flea+Market+Athens" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Souvlaki (pork or chicken in pita &mdash; ask without tzatziki), grilled octopus, fresh fish at Psyrri or Koukaki tavernas. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Avoid moussaka (has dairy). Assyrtiko from Santorini is the finest Greek white wine.</div>
+      <div class="item"><div class="item-name">Psyrri &amp; Koukaki Neighborhoods</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">For authentic dining, walk to Psyrri or Koukaki &mdash; away from the tourist restaurants in Plaka. Taverna classics: grilled octopus, fresh fish, Greek salad. Loukoumades (Greek doughnuts with honey) at Lukumades in Psyrri.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Psyrri+neighborhood+Athens" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Greek Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Assyrtiko from Santorini (mineral, crisp, one of the world's great whites), Moschofilero (floral, light white from Peloponnese), Malagousia (aromatic white). Avoid Agiorgitiko and Xinomavro (reds). Wine shops in Monastiraki have excellent selections.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Metro Line 1</td><td>Piraeus station (5 min walk from berths) &rarr; Monastiraki. 40 min. &euro;1.20. Every 5&ndash;10 min.</td></tr>
+        <tr><td>Taxi</td><td>&euro;25&ndash;30 to Athens center. Can take longer in traffic. Good for groups.</td></tr>
+        <tr><td>On foot (Athens)</td><td>Acropolis, Plaka, Monastiraki, and Ancient Agora are all walkable from each other.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- HYDRA -->
+<section class="port-section" id="port-hydra" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Hydra</div><div class="port-country">Greece &middot; Saronic Gulf &middot; No Cars, No Roads</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">No motor vehicles</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Tender to:</strong> Main harbor &mdash; you step off directly into town</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walking, donkeys, water taxis &mdash; zero cars, zero motorbikes</div>
+      <div class="quick-fact"><strong>&#9888; Cobblestones:</strong> Steep and slippery &mdash; wear sturdy flat shoes</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~20&deg;C, ideal &mdash; pre-season quiet, locals have time to talk</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Harbor &amp; Captains' Mansions</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The harbor itself is the main attraction &mdash; lined with historic mansions that served as the homes of wealthy naval captains who funded the Greek War of Independence. The whole harbor is photogenic. Step off the tender and you're immediately in the heart of the island. Walk the waterfront and explore the lanes behind.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Hydra+Harbor+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Hydra+Greece+history+naval+captains+Greek+War+Independence" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Inland Neighborhoods &mdash; Above the Waterfront</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Head up any of the steep cobbled streets that lead away from the water. Within minutes you reach small squares with traditional stone houses, local caf&eacute;s, and ordinary shops. Here you get proper Greek coffee at normal rates and see how the island actually operates beyond the tourist restaurants. Most cruise passengers stay at the waterfront &mdash; the residential neighborhoods above are genuinely quiet.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Hydra+Town+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Museum of Hydra (Lazaros Koundouriotis Mansion)</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">An 18th-century admiral's mansion near the harbor &mdash; the main repository for the island's shipping history and independence records. The building itself demonstrates how the merchant class actually occupied domestic space. Allow 1 hour. Most cruise passengers skip it entirely &mdash; which means it's quiet.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Lazaros+Koundouriotis+Mansion+Hydra+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Hydra+Greece+Koundouriotis+mansion+naval+history+independence" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Kamini &amp; Vlychos &mdash; Coastal Walk</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">15 min coastal walk west of the harbor to Kamini &mdash; a quaint fishing village with a small picturesque harbor and relaxed tavernas. Continue 30&ndash;40 min to Vlychos &mdash; a beautiful hamlet with a pebble beach and traditional stone bridges. Or take a water taxi from the harbor.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kamini+Hydra+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Monastery of Prophet Elias</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Steep 1-hour hike up to the monastery &mdash; panoramic views of the island and sea. A functioning religious community &mdash; dress modestly. The views across the Aegean exist, but they're secondary to the fact that this is a working monastery away from the tourist activity below.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Monastery+Prophet+Elias+Hydra+Greece" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, seafood meze. Avoid waterfront restaurants &mdash; overpriced tourist traps. Head up any side street for 5 minutes and prices drop while quality improves. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Amygdalota (almond sweets &mdash; dairy-free) are the island's specialty.</div>
+      <div class="item"><div class="item-name">Eat Inland &mdash; Not on the Waterfront</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">The waterfront restaurants price their menus for people who've just arrived with limited time and full wallets. Head up any side street for 5 minutes and prices drop while quality improves. Sit at a caf&eacute; for a proper hour &mdash; order whatever the locals eat. The cost is significantly lower than waterfront places.</div></div>
+      <div class="item"><div class="item-name">Amygdalota &mdash; Almond Sweets</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Hydra's famous local specialty &mdash; almond-based sweets that are dairy-free and delicious. Available in shops throughout the harbor area. An excellent edible souvenir.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>The entire town is walkable. No cars, no motorbikes &mdash; everything is foot or boat.</td></tr>
+        <tr><td>Water taxis</td><td>From the harbor to Kamini, Vlychos, and swimming spots. Negotiate at the harbor.</td></tr>
+        <tr><td>Donkeys</td><td>For luggage and steep paths. Not recommended for riding &mdash; animal welfare concerns.</td></tr>
+        <tr><td>&#9888; Cobblestones</td><td>Steep and slippery &mdash; wear sturdy flat shoes. No heels.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MILOS -->
+<section class="port-section" id="port-milos" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Milos</div><div class="port-country">Greece &middot; Cyclades &middot; Volcanic Island &middot; Venus de Milo</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Rent a car/ATV</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Tender to:</strong> Adamas port &mdash; town center is 2 min walk from tender pier</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Rental car/ATV (best), KTEL bus, taxi (scarce)</div>
+      <div class="quick-fact"><strong>&#9888; Beaches:</strong> Sarakiniko and Kleftiko need a rental vehicle or boat trip</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; pre-season, uncrowded</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Sarakiniko Beach &mdash; Moonscape</div><span class="item-tag tag-photo">&#128247; Photography</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Milos' famous moonscape of white volcanic rock and turquoise coves &mdash; one of the most photographed beaches in Greece. Free entry. Early morning or late afternoon &mdash; midday sun is fierce and reflects off the white rock. Rental car or ATV from Adamas (15 min). Book car rental early on cruise days.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Sarakiniko+Beach+Milos+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Plaka &amp; the Kastro</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Climb through whitewashed lanes to the Venetian castle for island-wide views. Late afternoon for cooler air and the best light &mdash; Plaka is famous for its sunset. Bus from Adamas or short taxi ride. The Archaeological Museum of Milos is here &mdash; &euro;4 entry, includes a cast of the Venus de Milo.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Plaka+Kastro+Milos+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Venus+de+Milo+Milos+Greece+discovery+history+Louvre" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Klima &amp; the Syrmata</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">A tiny fishing hamlet lined with colorful boathouses (syrmata) at the water's edge &mdash; the ground floor is the boat garage, the upper floor is the fisherman's home. Late afternoon when the low sun lights up the painted doors and the sea is calm. Free. Short drive from Adamas.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Klima+Syrmata+Milos+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Kleftiko Sea Caves &mdash; by Boat</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">White sea-stacks, arches, and caves on a boat trip to Milos' wild south-west coast &mdash; one of the most spectacular boat trips in the Aegean. &euro;40&ndash;90 boat trip. Book ahead. Morning departures usually get the smoothest crossing. On a calm-sea day only.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kleftiko+Milos+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Catacombs of Milos</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">One of the world's oldest and most important early-Christian burial complexes &mdash; carved into the volcanic rock. &euro;6 entry. 45 min. Check seasonal opening hours before you go &mdash; often closed in the early afternoon. Near Tripiti village, short drive from Adamas.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Catacombs+of+Milos+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Catacombs+Milos+Greece+early+Christian+history" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, seafood at Adamas waterfront tavernas or Pollonia village. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Milos is known for pitarakia (small cheese pies &mdash; Holly avoid) and fresh fish. Carry cash for buses, taxis, and beach snack bars.</div>
+      <div class="item"><div class="item-name">Adamas Waterfront Tavernas</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Fresh seafood and Greek mezze at the harbor tavernas, steps from the tender. Lunchtime &mdash; grab a shaded table on the quay before the afternoon rush. &euro;15&ndash;30 per person.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Adamas+Milos+waterfront+restaurants" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Pollonia Village &mdash; Seafood</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">A calm sandy bay and waterfront fish tavernas at the island's laid-back north-east tip. Midday for the sheltered swimming bay, or evening for dinner by the water. 20 min by rental car from Adamas.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pollonia+Village+Milos+Greece" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Car / ATV rental</td><td>&euro;35&ndash;60/day. Best option for Sarakiniko, Plaka, and far beaches. Book ahead on cruise days. Rental desks along the Adamas waterfront.</td></tr>
+        <tr><td>KTEL bus</td><td>&euro;2&ndash;3. From Adamas waterfront square. To Plaka, Tripiti, Pollonia, and main beaches. Frequency drops outside summer.</td></tr>
+        <tr><td>Taxi</td><td>Only a handful on the island &mdash; scarce on cruise days. Agree fare first.</td></tr>
+        <tr><td>Boat (Kleftiko)</td><td>&euro;40&ndash;90/person. Book at Adamas pier. Morning departures. Calm sea days only.</td></tr>
+        <tr><td>&#9888; Return buffer</td><td>Tender port &mdash; allow 90 min return buffer. Last-tender times are strict.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- HERAKLION -->
+<section class="port-section" id="port-heraklion" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Heraklion</div><div class="port-country">Greece &middot; Crete &middot; Capital &middot; Minoan Civilization</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Heraklion port &mdash; 5 min walk to city center</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (city center), taxi/bus (Knossos, Spinalonga)</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; Knossos before summer crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Palace of Knossos</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Go early</span><div class="item-desc">Europe's oldest city &mdash; the center of the Minoan civilization (2000&ndash;1400 BC). The labyrinthine palace complex that inspired the myth of the Minotaur and the Labyrinth. &euro;15 entry. 5 km from the port (taxi ~&euro;10 or bus &euro;1.70). Go early morning before tour groups arrive. Allow 2 hours.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Palace+of+Knossos+Crete+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Knossos+Palace+Crete+Minoan+civilization+Minotaur+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Heraklion Archaeological Museum</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">The world's finest collection of Minoan art &mdash; the Phaistos Disc, the Snake Goddess figurines, the Bull-Leaping Fresco, and the Akrotiri frescoes. &euro;15 entry (combined with Knossos). In the city center &mdash; 5 min walk from the port. Allow 2 hours. One of the most important museums in the world.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Heraklion+Archaeological+Museum+Crete" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Heraklion+Archaeological+Museum+Minoan+art+Phaistos+Disc" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Venetian Walls &amp; Koules Fortress</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Walk the Venetian harbor walls &mdash; the Koules Fortress (Rocca al Mare) guards the harbor entrance. &euro;4 entry. The Lion of St. Mark is carved above the entrance. The harbor view from the fortress is excellent. Combine with a walk along the waterfront promenade.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Koules+Fortress+Heraklion+Crete" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Koules+Fortress+Heraklion+Venetian+history+Lion+St+Mark" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">1866 Street Market (Agora)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Heraklion's main market street &mdash; Cretan olive oil, thyme honey, dried herbs, carob products, fresh produce. Mon&ndash;Sat morning. The best place to buy Cretan specialties. Combine with the Archaeological Museum nearby.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=1866+Street+Market+Heraklion+Crete" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, dakos (barley rusk with tomato &mdash; ask without cheese), Cretan olive oil. Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic) and "&#967;&#969;&#961;&#943;&#962; &#964;&#965;&#961;&#943;" (no cheese). Vidiano and Thrapsathiri whites are excellent.</div>
+      <div class="item"><div class="item-name">Cretan Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Vidiano (crisp Cretan white &mdash; floral, mineral), Thrapsathiri (light, fresh white). Look for Lyrarakis and Douloufakis wineries. The 1866 Street market has excellent wine shops.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>City center, museum, Koules Fortress, and 1866 market all walkable from port.</td></tr>
+        <tr><td>Taxi (Knossos)</td><td>~&euro;10, 10 min. Available at port. Agree fare first.</td></tr>
+        <tr><td>Bus (Knossos)</td><td>&euro;1.70, 20 min. Bus stop near the port. Frequent service.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SANTORINI -->
+<section class="port-section" id="port-santorini" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Santorini</div><div class="port-country">Greece &middot; Cyclades &middot; Volcanic Caldera Masterpiece</div></div>
+      <div class="port-badges"><span class="badge badge-tender">&#9973; Tender</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">&euro;12 cruise levy</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>100% tender port:</strong> Ships anchor in the caldera &mdash; 10&ndash;20 min tender to Old Port (Skala)</div>
+      <div class="quick-fact"><strong>To Fira:</strong> Cable car &euro;10 (3 min) or 588 steps up from Old Port</div>
+      <div class="quick-fact"><strong>April/May levy:</strong> &euro;12/person charged to onboard account</div>
+      <div class="quick-fact"><strong>&#9888; Return:</strong> Allow 60&ndash;90 min for cable car + tender on busy afternoons</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Return timing:</strong> Allow 60&ndash;90 min for cable car queue + tender ride on busy afternoons. Never plan to arrive "at the cable car" at last-tender time. Count backwards from the tender, not from all-aboard.</span></div>
+      <div class="item"><div class="item-name">Oia Village &mdash; Blue Domes &amp; Sunset</div><span class="item-tag tag-photo">&#128247; Photography</span><span class="item-tag tag-crowd">&#9200; Time it</span><div class="item-desc">The world-famous blue-domed churches and white cave houses perched on the caldera rim. 11 km north of Fira &mdash; 25 min by bus (&euro;2) or taxi. Arrive by 5 PM for a sunset spot &mdash; the sunset draws massive crowds. Narrow lanes packed with galleries, boutiques, and caf&eacute;s. Ammoudi Bay below has excellent seafood tavernas.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Oia+Village+Santorini+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Santorini+Oia+history+volcanic+caldera+Minoan+eruption" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Fira Town &amp; Caldera Walk</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The capital and transport hub, perched 400m above the caldera. Stunning cliff-edge walkway with panoramic volcano views. Walk the caldera path from Fira to Firostefani and Imerovigli (2&ndash;3 km, 1 hr) for the best views without the Oia crowds. Museum of Prehistoric Thera (&euro;10) has original Akrotiri frescoes.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Fira+Town+Santorini+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Santorini Wine Tasting &mdash; Assyrtiko</div><span class="item-tag tag-wine">&#127863; Wine</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Volcanic soil produces unique Assyrtiko white wine &mdash; one of the world's great whites. Santo Wines (caldera views, on Perissa bus route) and Estate Argyros (Kamari bus route). Most tastings include 4&ndash;6 wines with appetizers. Book ahead in peak season. &euro;15&ndash;30/person.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Santo+Wines+Santorini+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Akrotiri Archaeological Site</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">"Minoan Pompeii" &mdash; a Bronze Age city buried by volcanic eruption around 1600 BC, preserved under ash. Multi-story buildings, drainage systems, and pottery visible under a climate-controlled shelter. Only ~30% excavated. &euro;20 entry. Red Beach is a 10 min walk from the site.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Akrotiri+Archaeological+Site+Santorini" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Akrotiri+Santorini+Minoan+Bronze+Age+volcanic+eruption+history" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled octopus, fava (yellow split pea puree &mdash; Santorini specialty, dairy-free), cherry tomato salad (no cheese). Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Assyrtiko is the finest Greek white wine &mdash; perfect with seafood.</div>
+      <div class="item"><div class="item-name">Ammoudi Bay &mdash; Seafood</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Below Oia &mdash; a tiny harbor with excellent seafood tavernas right on the water. Grilled octopus, fresh fish, lobster. Reached by 300 steps down from Oia or by water taxi. One of the most atmospheric dining spots in Santorini.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ammoudi+Bay+Oia+Santorini" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Santorini Assyrtiko</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">The island's signature grape &mdash; grown on vines woven into baskets against the wind (kouloura method). Mineral, crisp, with volcanic character. One of the world's great whites. Look for Domaine Sigalas, Estate Argyros, and Hatzidakis labels.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Cable car</td><td>Old Port &rarr; Fira. &euro;10 one-way. 3 min. Morning up: take first tender (beat the line). Return: begin descent 90 min before last tender.</td></tr>
+        <tr><td>588 steps</td><td>Free. 30&ndash;45 min up, 20&ndash;30 min down. Steep, cobbled, shared with donkeys. Wear grip shoes.</td></tr>
+        <tr><td>Bus (Fira hub)</td><td>ALL routes start/end in Fira. Oia: &euro;2, 20 min. Akrotiri: &euro;2, 25 min. Cash only, small bills.</td></tr>
+        <tr><td>Taxi</td><td>Extremely limited &mdash; pre-book if possible. Do not count on grabbing one on cruise days.</td></tr>
+        <tr><td>&#9888; Return buffer</td><td>Allow 60&ndash;90 min for cable car + tender on busy afternoons. Count backwards from last tender time.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- NAXOS -->
+<section class="port-section" id="port-naxos" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Naxos Town</div><div class="port-country">Greece &middot; Cyclades &middot; Largest Cycladic Island</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">&euro; Euro</span><span class="badge badge-tip">Walk off instantly</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Naxos Town port &mdash; step off the ship directly into the town center</div>
+      <div class="quick-fact"><strong>Getting around:</strong> Walk (old town, beaches), bus (&euro;1&ndash;2 to beaches and villages)</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; genuine island life, uncrowded</div>
+      <div class="quick-fact"><strong>Note:</strong> One of the Mediterranean's most convenient cruise ports &mdash; no shuttle needed</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Portara &mdash; Temple of Apollo</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The iconic marble doorway of an unfinished 6th-century BC temple to Apollo &mdash; standing alone on a small islet connected to the port by a causeway. Free. Best at sunset when the marble glows. 5 min walk from the ship. The most photographed sight in Naxos.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Portara+Temple+Apollo+Naxos+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Portara+Naxos+Temple+Apollo+history+ancient+Greece" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Kastro Quarter &mdash; Old Town</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The old quarter (Kastro) features narrow whitewashed streets, blue doors and shutters, and small squares with caf&eacute;s and vine-shaded tables. Less commercialized than Mykonos' old town and feels lived-in. Wander for 60&ndash;90 minutes. The Venetian castle walls date from the medieval period &mdash; views from the top encompass the harbor and surrounding islands.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kastro+Naxos+Town+Greece" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Naxos+Kastro+Venetian+history+Cyclades" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Agios Prokopios Beach</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Arguably the best all-round beach on Naxos &mdash; a long arc of golden sand, calm clear water, plenty of shade from tamarisk trees, and a string of small tavernas serving fresh seafood at reasonable prices. 10&ndash;15 min walk or short bus ride south of the town. Free entry. Lounge chairs &euro;5&ndash;8/day.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Agios+Prokopios+Beach+Naxos+Greece" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Apiranthos &amp; Filoti &mdash; Mountain Villages</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">Naxos has beautiful inland valleys and small villages perched on hillsides. Apiranthos is a marble-paved village with a distinctive Venetian character &mdash; 30 min by bus. Filoti is the largest inland village with a traditional square and excellent tavernas. Both offer genuine local atmosphere at a fraction of town prices.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Apiranthos+Village+Naxos+Greece" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh seafood, grilled fish, souvlaki (ask without tzatziki). Say "&#967;&#969;&#961;&#943;&#962; &#963;&#954;&#972;&#961;&#948;&#959;" (no garlic). Naxos produces excellent local wine and kitron (citrus-based spirit &mdash; dairy-free). Avoid graviera and feta (dairy). Meals at casual tavernas &euro;12&ndash;20/person.</div>
+      <div class="item"><div class="item-name">Local Specialties</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Naxos produces excellent local wine, kitron liqueur (from citron fruit &mdash; unique to Naxos, dairy-free), and the island's famous potatoes (Naxos potatoes are prized throughout Greece). Small shops in the old town sell local products at genuine prices.</div></div>
+      <div class="item"><div class="item-name">Naxian Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Naxian white wines from local varieties &mdash; look for Promponas winery. Kitron (citrus liqueur) is the island's signature drink &mdash; available in white (dry), yellow (medium), and green (sweet) varieties. All dairy-free.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Port is in the town center. Old town, Portara, and waterfront all walkable immediately.</td></tr>
+        <tr><td>Bus</td><td>&euro;1&ndash;2. From the port area. To Agios Prokopios (10 min), Apiranthos (30 min), Filoti (25 min).</td></tr>
+        <tr><td>Taxi</td><td>Minimal &mdash; not commonly used for short distances. Walking or bussing suffices.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- KUSADASI -->
+<section class="port-section" id="port-kusadasi" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Kusadasi</div><div class="port-country">Turkey &middot; Aegean Coast &middot; Gateway to Ephesus</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">TRY Lira</span><span class="badge badge-tip">Ephesus nearby</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Ege Port &mdash; walk directly into the bazaar and waterfront</div>
+      <div class="quick-fact"><strong>Ephesus:</strong> 20&ndash;25 min by taxi or pre-booked transport &mdash; 5&ndash;6 hours needed</div>
+      <div class="quick-fact"><strong>&#9888; Carpet shops:</strong> Avoid "free" presentations near the port &mdash; high-pressure sales environments</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~22&deg;C, ideal &mdash; Ephesus before summer heat and crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Ephesus independently:</strong> Pre-book reputable transport with confirmed pickup, waiting time, entrance gate, and return deadline. Verify current tickets at the official museum page. The site is large, exposed, and uneven &mdash; allow 2+ hours at the ruins.</span></div>
+      <div class="item"><div class="item-name">Ephesus (Efes) &mdash; Ancient City</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-crowd">&#9200; Book transport</span><div class="item-desc">One of the best-preserved ancient cities in the world &mdash; the Library of Celsus, the Great Theatre (capacity 25,000), the Temple of Hadrian, and the marble-paved Curetes Street. 20&ndash;25 min by taxi from the port. Pre-book a licensed local driver for flexibility. Allow 2+ hours at the ruins. April is ideal &mdash; before the summer heat and crowds.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ephesus+Ancient+City+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Ephesus+ancient+city+history+Library+Celsus+Roman+Empire" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Pigeon Island (G&uuml;vercinada)</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Turn right when you exit the port and follow the beautiful seaside promenade &mdash; an easy and scenic 15-minute walk to the causeway leading to the iconic little castle. Explore the castle, enjoy the views back towards the town, and take some fantastic photos. Free to walk to.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pigeon+Island+Kusadasi+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Pigeon+Island+Kusadasi+castle+history+Ottoman" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Kale&icirc;&#231;i (Old Town) &amp; Caravanserai</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Walk back towards town and find the ancient walls of the Old Town (Kale&icirc;&#231;i). Enter through the historic gate next to the &Ouml;k&uuml;z Mehmet Pasha Caravanserai (a beautifully restored fortress-like structure, now a hotel). Get lost in the narrow, winding streets filled with old houses, small caf&eacute;s, and shops.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kaleiçi+Old+Town+Kusadasi+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Kusadasi+Caravanserai+Ottoman+history+Okuz+Mehmet+Pasha" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Grand Bazaar &amp; Waterfront</div><span class="item-tag tag-market">&#127978; Market</span><div class="item-desc">The streets of Kale&icirc;&#231;i lead naturally into the bustling Grand Bazaar &mdash; Turkish delight, spices, leather goods, ceramics. Remember to haggle politely. Then find a caf&eacute; along the main waterfront for a Turkish coffee or cold drink before the easy walk back to the ship.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Grand+Bazaar+Kusadasi+Turkey" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled seafood, meze (many are dairy-free &mdash; ask), Turkish breakfast (olives, tomatoes, cucumbers, honey). Say "sar&#305;msak yok" (no garlic). Avoid yogurt-based dishes. Turkish white wines (Egeblend, Sauvignon Blanc from Aegean region) are improving.</div>
+      <div class="item"><div class="item-name">Waterfront Fish Restaurants</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Along Kusadasi's seafront promenade &mdash; fresh fish, grilled seafood, meze. The port area has a selection of fish restaurants with sea views. Avoid tourist traps near the port entrance &mdash; walk 5 minutes along the promenade for better options.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kusadasi+waterfront+restaurants+Turkey" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Turkish Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Turkish whites from the Aegean region &mdash; Egeblend (Sauvignon Blanc/Semillon blend), Urla Winery whites, Chamlija Sauvignon Blanc. Turkey's wine industry is improving rapidly. Avoid Bogazkere and Okuzgozu (reds).</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Port exits directly into the bazaar and waterfront. Pigeon Island is 15 min walk. Old Town is 10 min walk.</td></tr>
+        <tr><td>Taxi (Ephesus)</td><td>20&ndash;25 min. Pre-book with confirmed pickup, wait time, and return. ~&euro;40&ndash;55 round trip for a group.</td></tr>
+        <tr><td>&#9888; Carpet shops</td><td>Politely decline "free" presentations near the port &mdash; high-pressure sales environments that eat up your valuable time.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIKILI -->
+<section class="port-section" id="port-dikili" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Dikili</div><div class="port-country">Turkey &middot; Aegean Coast &middot; Gateway to Pergamon</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">TRY Lira</span><span class="badge badge-tip">Tuesday market</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Dikili Liman&#305; &mdash; 5 min flat stroll along the promenade (Kordon) to town center</div>
+      <div class="quick-fact"><strong>Pergamon:</strong> ~29 km inland, 40 min drive &mdash; UNESCO World Heritage acropolis</div>
+      <div class="quick-fact"><strong>&#9200; Tuesday market:</strong> If your ship calls on Tuesday, walk straight to the weekly pazar &mdash; completely authentic</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~20&deg;C, pleasant spring &mdash; Pergamon before summer heat</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Pergamon Acropolis &amp; Asclepion (UNESCO)</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">One of antiquity's great cities &mdash; the Acropolis clings to a dramatic hilltop with the world's steepest ancient theater (capacity 10,000), while the Asclepion served as a celebrated healing center where Galen practiced medicine. A cable car (Teleferik) whisks you to the top. ~29 km / 40 min drive. 4&ndash;5 hours total. Negotiate a firm all-in taxi price including wait time (~&euro;40&ndash;55 per taxi for a shared group).</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Pergamon+Acropolis+Bergama+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Pergamon+Acropolis+history+ancient+city+Attalid+dynasty+library" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Dikili Tuesday Market (Pazar)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">If your ship calls on Tuesday, walk straight to the weekly pazar &mdash; local olives, Bergama tulum cheese, spices, textiles, and fresh produce fill the stalls. Completely authentic and entirely free to browse. 10 min walk from pier. Tuesdays only. One of the most authentic experiences in town.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Dikili+Tuesday+Market+Turkey" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">&#199;andarl&#305; Castle</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">A beautifully preserved Genoese fortress perched over the sea in the coastal town of &#199;andarl&#305;. Climb the ramparts for sweeping views of the Aegean &mdash; an easy half-day with a swim stop on the way back. 25 min south of Dikili by taxi. Small entry fee. 14th century.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Candarli+Castle+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Candarli+Castle+Genoese+fortress+Turkey+history" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Killik Bay &amp; Thermal Mud Baths</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Drive south to Bademli's Killik Bay &mdash; often called the 'Maldives of the Aegean' for its turquoise water and distinctive golden sand. Natural white clay bubbles up nearby &mdash; rub it on your skin for a free spa session, then wash off in the sea. 20 min by taxi. Free beach access. 3&ndash;4 hours.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Killik+Bay+Bademli+Dikili+Turkey" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Kordon Promenade &amp; Town Center</div><span class="item-tag tag-walk">&#128694; Walking</span><div class="item-desc">Walk the seafront Kordon from the pier north past fish restaurants, tea gardens, and the public beach. Grab a Turkish &#231;ay and watch the fishing boats come in. Head inland from the promenade to Dikili's central square and the Merkez Camii mosque &mdash; streets lined with olive oil shops and local bakeries selling boyoz pastries.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Dikili+Kordon+promenade+Turkey" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish, grilled seafood, meze (olives, hummus, grilled vegetables &mdash; ask about garlic). Say "sar&#305;msak yok" (no garlic). Dikili olive oil is excellent &mdash; buy at the Tuesday market or local shops. Turkish Aegean whites are improving.</div>
+      <div class="item"><div class="item-name">Dikili Olive Oil</div><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">The Dikili region is known for excellent olive oil &mdash; buy at the Tuesday market or local shops along the Kordon. Cold-pressed, early harvest varieties are the best. An excellent edible souvenir.</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>On foot</td><td>Town center is 5 min walk from the pier along the flat Kordon promenade.</td></tr>
+        <tr><td>Taxi (Pergamon)</td><td>~40 min, ~29 km. Negotiate a firm all-in price including wait time. ~&euro;40&ndash;55 per taxi for a group.</td></tr>
+        <tr><td>Taxi (&#199;andarl&#305;)</td><td>25 min south. Small entry fee. Combine with a swim stop.</td></tr>
+        <tr><td>Taxi (Killik Bay)</td><td>20 min south to Bademli. Free beach access.</td></tr>
+        <tr><td>&#9888; Wear proper shoes</td><td>Pergamon Acropolis involves steep ancient stone paths. Sandals are fine for the beach but dangerous on the ruins.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CANAKKALE -->
+<section class="port-section" id="port-canakkale" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">&#199;anakkale</div><div class="port-country">Turkey &middot; Dardanelles Strait &middot; Troy &amp; Gallipoli</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">TRY Lira</span><span class="badge badge-tip">Troy 30 min away</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Kepez cruise terminal &mdash; most cruise lines provide free shuttle to &#199;anakkale city center (~20 min)</div>
+      <div class="quick-fact"><strong>Troy:</strong> 18 km from Kepez &mdash; taxi or organized transport (~30 min)</div>
+      <div class="quick-fact"><strong>Gallipoli:</strong> Ferry across the Dardanelles &mdash; full-day commitment</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~20&deg;C, ideal &mdash; ANZAC Day (April 25) draws large crowds if your call coincides</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="item"><div class="item-name">Ancient City of Troy (UNESCO)</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">The legendary city of Homer's Iliad &mdash; nine superimposed cities spanning 4,000 years of history. The ruins are subtle &mdash; read up before visiting or the layers won't mean much. A replica of the famous Trojan Horse stands at the entrance. 18 km from Kepez &mdash; taxi or pre-booked transport (~30 min). Allow 2 hours at the site. The Troy Museum nearby is excellent.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Ancient+City+of+Troy+Turkey+UNESCO" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Troy+ancient+city+history+Homer+Iliad+Trojan+War+Schliemann" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Gallipoli Peninsula &mdash; WWI Battlefields</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">Across the Dardanelles &mdash; a place of pilgrimage for Australians, New Zealanders, and Turks. ANZAC Cove, Lone Pine Cemetery, Chunuk Bair, and the Turkish memorials. Regular car ferries from &#199;anakkale (20&ndash;30 min crossing). A full-day commitment &mdash; only if port time allows 8+ hours. Deeply moving.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Gallipoli+Peninsula+Turkey+ANZAC" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Gallipoli+WWI+ANZAC+Cove+history+Dardanelles+campaign" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">&#199;anakkale Waterfront &amp; Naval Museum</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The massive wooden horse used in the 2004 movie 'Troy' was gifted to the city and now stands proudly on the waterfront &mdash; a fun photo stop. The &#199;anakkale Naval Museum offers fascinating insights into the region's maritime and military history. The seafront promenade has fish restaurants, bars, and caf&eacute;s.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Canakkale+waterfront+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Canakkale+Naval+Museum+Dardanelles+history+WWI" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">&#199;anakkale Archaeological Museum</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">Houses significant exhibits including artifacts originally belonging to Frank Calvert, who aided Heinrich Schliemann in discovering Troy. Short taxi ride from the city center. Excellent context for a Troy visit.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Canakkale+Archaeological+Museum+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Canakkale+Archaeological+Museum+Frank+Calvert+Schliemann+Troy" target="_blank">&#129302; Ask Historian</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish from the Dardanelles, grilled seafood, meze (olives, hummus, grilled vegetables). Say "sar&#305;msak yok" (no garlic). Avoid yogurt-based dishes. The seafront promenade has fish restaurants with sea views.</div>
+      <div class="item"><div class="item-name">Seafront Fish Restaurants</div><span class="item-tag tag-seafood">&#128031; Seafood</span><div class="item-desc">Along &#199;anakkale's seafront promenade &mdash; fresh fish, grilled seafood, meze. The Dardanelles is rich in fish &mdash; sea bass, sea bream, and bluefish are local specialties. Casual, open-air settings with views of the strait.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Canakkale+seafront+restaurants+Turkey" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>Shuttle (Kepez &rarr; center)</td><td>Most cruise lines provide free shuttle to &#199;anakkale city center. ~20 min. Check with Scenic.</td></tr>
+        <tr><td>Taxi (Troy)</td><td>~30 min from Kepez. Negotiate a firm all-in price including wait time. ~&euro;40&ndash;60 per taxi for a group.</td></tr>
+        <tr><td>Dolmu&#351; (shared taxi)</td><td>Shared minibuses run set routes between &#199;anakkale and nearby towns. Budget-friendly.</td></tr>
+        <tr><td>Ferry (Gallipoli)</td><td>Car ferry from &#199;anakkale to Eceabat. 20&ndash;30 min crossing. Frequent service. Full-day commitment.</td></tr>
+        <tr><td>&#9888; ANZAC Day</td><td>April 25 draws very large crowds to Gallipoli &mdash; if your call coincides, plan accordingly.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ISTANBUL -->
+<section class="port-section" id="port-istanbul" role="tabpanel">
+  <div class="port-header">
+    <div class="port-header-top">
+      <div><div class="port-name">Istanbul</div><div class="port-country">Turkey &middot; Final Port &middot; Where Europe Meets Asia</div></div>
+      <div class="port-badges"><span class="badge badge-dock">&#9875; Docks</span><span class="badge badge-currency">TRY Lira</span><span class="badge badge-tip">Galataport</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>Dock:</strong> Galataport &mdash; underground cruise terminal in Karaköy, steps from the T1 tram</div>
+      <div class="quick-fact"><strong>To Sultanahmet:</strong> T1 tram from Tophane stop &mdash; 10&ndash;15 min, &euro;0.50</div>
+      <div class="quick-fact"><strong>Getting around:</strong> T1 tram (most useful), Uber, taxi, ferry (Bosphorus)</div>
+      <div class="quick-fact"><strong>April/May:</strong> ~18&deg;C, ideal &mdash; spring tulip season, manageable crowds</div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127981;</span><span class="section-title">Activities &amp; Sights</span></div>
+    <div class="section-card-body">
+      <div class="crowd-alert">&#9888;&#65039; <span><strong>Hagia Sophia &amp; Blue Mosque:</strong> Both are now active mosques &mdash; dress modestly (shoulders and knees covered, women bring a scarf). Hagia Sophia has long queues &mdash; go at opening or late afternoon. Blue Mosque is free.</span></div>
+      <div class="item"><div class="item-name">Hagia Sophia</div><span class="item-tag tag-history">&#127981; History</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Built in 537 AD &mdash; for nearly 1,000 years the largest cathedral in the world. Now an active mosque. The interior is one of the most extraordinary spaces ever created &mdash; the floating dome, the golden mosaics, the sheer scale. Go at opening (9 AM) or after 3 PM to avoid the worst queues. Dress modestly &mdash; shoulders and knees covered, women bring a scarf.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Hagia+Sophia+Istanbul+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Hagia+Sophia+Istanbul+history+Byzantine+Ottoman+537AD" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Topkapi Palace</div><span class="item-tag tag-history">&#127981; History</span><div class="item-desc">The administrative center of the Ottoman Empire for 400 years &mdash; the Harem, the Imperial Treasury (Topkapi Dagger, Spoonmaker's Diamond), and the Sacred Relics collection. &euro;25 entry. Book online to skip queues. Allow 3 hours. The views of the Bosphorus from the palace gardens are extraordinary.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Topkapi+Palace+Istanbul+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Topkapi+Palace+Istanbul+Ottoman+Empire+history+Harem" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Grand Bazaar (Kapali&#231;ar&#351;&#305;)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Founded in 1461 by Sultan Mehmed II &mdash; one of the oldest and largest covered markets in the world. 61 covered streets, 4,000+ shops, 30,000+ m&sup2;. Open 8:30 AM&ndash;7 PM daily. Closed Sundays and public holidays. Haggling is expected &mdash; start at 40&ndash;50% of the first price. Ceramics, textiles, spices, jewelry, leather.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Grand+Bazaar+Istanbul+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Grand+Bazaar+Istanbul+history+1461+Ottoman+Mehmed+II" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Spice Bazaar (M&#305;s&#305;r &#199;ar&#351;&#305;s&#305;)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Built in 1660 &mdash; the center of the spice trade between Istanbul and the East. L-shaped building, 85 shops. Open 8 AM&ndash;7:30 PM daily. Closed Sundays and public holidays. Saffron, dried fruits, Turkish delight, olive oil soaps, spices. Excellent for Holly's food preferences &mdash; dried fruits, olive oils, spices.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Spice+Bazaar+Istanbul+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Spice+Bazaar+Istanbul+Egyptian+Bazaar+history+1660+Ottoman" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Galataport &mdash; Istanbul Modern &amp; Waterfront</div><span class="item-tag tag-walk">&#128694; Walking</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">The ship docks at Galataport &mdash; a 1.2 km car-free waterfront promenade in Karaköy. Istanbul Modern (Renzo Piano building, 2023) is steps from the ship &mdash; Turkey's finest modern art museum (~750 TRY entry). The Kili&#231; Ali Pasha Mosque (1580&ndash;1587, Mimar Sinan) is on the promenade. Walk the promenade for Bosphorus views &mdash; the Historic Peninsula on one side, the strait on the other.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Galataport+Istanbul+Turkey" target="_blank">&#128205; Map</a><a class="btn btn-ai" href="https://copilot.microsoft.com/?q=Galataport+Istanbul+Karakoy+history+waterfront+Renzo+Piano" target="_blank">&#129302; Ask Historian</a></div></div>
+      <div class="item"><div class="item-name">Bosphorus Ferry</div><span class="item-tag tag-holly">&#10003; Holly</span><span class="item-tag tag-photo">&#128247; Photography</span><div class="item-desc">Take a public ferry from Karaköy or Eminönü across to the Asian side (Kadıköy or Üsküdar) &mdash; one of the world's great short ferry rides. ~&euro;0.50 each way. The view of the Historic Peninsula from the water is extraordinary. Kadıköy has an excellent food market and local restaurants.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Karakoy+Ferry+Terminal+Istanbul" target="_blank">&#128205; Map</a></div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#127869;</span><span class="section-title">Food &amp; Wine</span></div>
+    <div class="section-card-body">
+      <div class="holly-safe"><strong>Holly-safe:</strong> Fresh fish from the Bosphorus, grilled seafood, meze (many are dairy-free &mdash; ask), simit (sesame bread ring &mdash; dairy-free), fresh fruit juices. Say "sar&#305;msak yok" (no garlic). Avoid yogurt-based dishes (cacik, haydari). Turkish Aegean whites are excellent.</div>
+      <div class="item"><div class="item-name">Karaköy &amp; Galataport Dining</div><span class="item-tag tag-seafood">&#128031; Seafood</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">The Galataport promenade has cafes and restaurants with genuine Bosphorus views. Karaköy neighborhood (one street back from the waterfront) has excellent local restaurants, bakeries, and coffee shops at normal prices. Avoid the tourist-facing restaurants on the main waterfront strip.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Karakoy+neighborhood+Istanbul" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Kadıköy Market (Asian Side)</div><span class="item-tag tag-market">&#127978; Market</span><span class="item-tag tag-holly">&#10003; Holly</span><div class="item-desc">Take the ferry to Kadıköy on the Asian side &mdash; the Kadıköy Produce Market (Moda Caddesi area) is one of Istanbul's best food markets. Fresh fish, dried fruits, olives, spices, local cheeses (Holly avoid), fresh produce. More local and less touristy than the Spice Bazaar.</div><div class="btn-row"><a class="btn btn-map" href="https://maps.google.com/?q=Kadikoy+Market+Istanbul+Asian+side" target="_blank">&#128205; Map</a></div></div>
+      <div class="item"><div class="item-name">Turkish Wines</div><span class="item-tag tag-wine">&#127863; Wine</span><div class="item-desc">For Holly: Turkish whites from the Aegean region &mdash; Urla Winery Sauvignon Blanc, Chamlija Sauvignon Blanc, Kavaklidere Egeblend (white). Turkey's wine industry is improving rapidly. Wine shops in Karaköy have excellent selections. Avoid Bogazkere and Okuzgozu (reds).</div></div>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128652;</span><span class="section-title">Transport</span></div>
+    <div class="section-card-body">
+      <table class="transport-table">
+        <tr><th>Option</th><th>Details</th></tr>
+        <tr><td>T1 Tram</td><td>Tophane stop (steps from Galataport) &rarr; Sultanahmet (Hagia Sophia, Blue Mosque, Topkapi). 10&ndash;15 min. ~&euro;0.50. Most useful transport in Istanbul.</td></tr>
+        <tr><td>Uber</td><td>Reliable throughout Istanbul. Best for Topkapi, Grand Bazaar, and longer distances. Istanbul traffic can be heavy.</td></tr>
+        <tr><td>Taxi</td><td>Available throughout. Metered. Reliable but traffic-dependent.</td></tr>
+        <tr><td>Ferry (Bosphorus)</td><td>Karaköy or Eminönü &rarr; Kadıköy or Üsküdar (Asian side). ~&euro;0.50. 15&ndash;20 min. Scenic and practical.</td></tr>
+        <tr><td>&#9888; Return buffer</td><td>Istanbul traffic is unpredictable. If you go to Sultanahmet or the Grand Bazaar, leave a generous buffer to get back to Galataport.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="section-card">
+    <div class="section-card-header"><span class="section-icon">&#128279;</span><span class="section-title">Official Sources</span></div>
+    <div class="section-card-body">
+      <div class="official-links">
+        <a class="official-link" href="https://www.muze.gov.tr/en/muze-detay?SectionId=AYS01&DistId=AYS" target="_blank"><span class="official-link-icon">&#127981;</span><span class="official-link-text"><div class="official-link-name">muze.gov.tr &mdash; Hagia Sophia</div><div class="official-link-desc">Official Hagia Sophia &mdash; opening hours &amp; visitor information</div></span></a>
+        <a class="official-link" href="https://www.millisaraylar.gov.tr/muzeler/topkapi-sarayi-muzesi" target="_blank"><span class="official-link-icon">&#127963;</span><span class="official-link-text"><div class="official-link-name">millisaraylar.gov.tr &mdash; Topkapi</div><div class="official-link-desc">Topkapi Palace &mdash; official tickets &amp; hours</div></span></a>
+        <a class="official-link" href="https://www.istanbulmodern.org/en" target="_blank"><span class="official-link-icon">&#127912;</span><span class="official-link-text"><div class="official-link-name">istanbulmodern.org</div><div class="official-link-desc">Istanbul Modern &mdash; Renzo Piano building at Galataport</div></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY PLANNER -->
+<section class="port-section" id="port-planner" role="tabpanel">
+  <div class="port-header" style="background:linear-gradient(135deg,#0d2a1a,#162030);border-color:#1abc9c33;">
+    <div class="port-header-top">
+      <div>
+        <div class="port-name" style="color:#1abc9c;">Day Planner</div>
+        <div class="port-country">Plan your day &mdash; ship tours, independent time &amp; port notes</div>
+      </div>
+      <div class="port-badges"><span class="badge" style="background:rgba(26,188,156,0.2);color:#5de8d0;border:1px solid rgba(26,188,156,0.3);">&#128190; Auto-saves</span></div>
+    </div>
+    <div class="port-quick-facts">
+      <div class="quick-fact"><strong>How to use:</strong> Select a port, fill in your ship tour (if any), tick what you want to do independently, set your all-aboard time. All data saves automatically to this device.</div>
+    </div>
+  </div>
+
+  <div class="dp-port-select-wrap">
+    <label for="dp-port-select">Select Port</label>
+    <select class="dp-port-select" id="dp-port-select" onchange="dpLoadPort(this.value)">
+      <option value="rome">&#127470;&#127481; Rome (Civitavecchia)</option>
+      <option value="bonifacio">&#127467;&#127479; Bonifacio, Corsica</option>
+      <option value="portocervo">Porto Cervo, Sardinia</option>
+      <option value="sorrento">Sorrento</option>
+      <option value="syracuse">Syracuse, Sicily</option>
+      <option value="malta">&#127474;&#127481; Malta (Valletta)</option>
+      <option value="chania">Chania, Crete</option>
+      <option value="alexandria">&#127466;&#127468; Alexandria, Egypt</option>
+      <option value="rhodes">Rhodes</option>
+      <option value="mykonos">Mykonos</option>
+      <option value="athens">Athens (Piraeus)</option>
+      <option value="hydra">Hydra</option>
+      <option value="milos">Milos</option>
+      <option value="heraklion">Heraklion, Crete</option>
+      <option value="santorini">Santorini</option>
+      <option value="naxos">Naxos Town</option>
+      <option value="kusadasi">&#127481;&#127479; Kusadasi</option>
+      <option value="dikili">Dikili</option>
+      <option value="canakkale">&#199;anakkale</option>
+      <option value="istanbul">Istanbul</option>
+    </select>
+  </div>
+
+  <div class="dp-card">
+    <div class="dp-card-header"><span class="section-icon">&#9200;</span><span class="dp-card-title gold">Port Times &amp; Reminders</span></div>
+    <div class="dp-card-body">
+      <div class="dp-times-grid">
+        <div><div class="dp-field-label">All-Aboard Time</div><input class="dp-input" id="dp-aboard" placeholder="e.g. 17:30" type="time" oninput="dpSave()"></div>
+        <div><div class="dp-field-label">Dock / Tender Time</div><input class="dp-input" id="dp-docktime" placeholder="e.g. 08:00" type="time" oninput="dpSave()"></div>
+      </div>
+      <div class="dp-tender-alert" id="dp-tender-alert">&#9973; <strong>Tender port</strong> &mdash; join the return tender queue at least 45&ndash;90 min before all-aboard. Watch for wind and swell warnings from the ship.</div>
+      <div style="margin-top:12px;"><div class="dp-field-label">Port Notes &amp; Reminders</div><textarea class="dp-textarea" id="dp-port-notes" placeholder="e.g. Restaurant reservation at 13:00 &middot; Carry &euro;150 cash &middot; Wear flat shoes &middot; Book Pompeii tickets before sailing" oninput="dpSave()"></textarea></div>
+    </div>
+  </div>
+
+  <div class="dp-card">
+    <div class="dp-card-header"><span class="section-icon">&#128674;</span><span class="dp-card-title blue">Ship Tour (Scenic)</span></div>
+    <div class="dp-card-body">
+      <div style="margin-bottom:12px;"><div class="dp-field-label">Tour Name &amp; Details</div><textarea class="dp-textarea" id="dp-tour-name" placeholder="e.g. Scenic &mdash; Acropolis &amp; Athens City Tour &middot; Departs 08:30 &middot; Returns 13:00" oninput="dpSave()"></textarea></div>
+      <div><div class="dp-field-label">Meeting Point &amp; Time</div><input class="dp-input" id="dp-tour-meeting" placeholder="e.g. Gangway Deck 3 &middot; 08:15" oninput="dpSave()"></div>
+    </div>
+  </div>
+
+  <div class="dp-card">
+    <div class="dp-card-header"><span class="section-icon">&#9728;</span><span class="dp-card-title teal">Our Day &mdash; Independent Options</span></div>
+    <div class="dp-card-body">
+      <ul class="dp-checklist" id="dp-checklist"></ul>
+      <div class="dp-add-row">
+        <input class="dp-add-input" id="dp-add-input" placeholder="Add your own item..." type="text" onkeydown="if(event.key==='Enter')dpAddCustom()">
+        <button class="dp-add-btn" onclick="dpAddCustom()">+ Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dp-saved-note" id="dp-saved-note">Changes save automatically to this device</div>
+  <button class="dp-clear-btn" onclick="dpClearPort()">Clear this port's plan</button>
+</section>
+
+</main>
+
+<script>
+function showPort(id, btn) {
+  document.querySelectorAll('.port-section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.port-tab').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false');});
+  var sec = document.getElementById('port-' + id);
+  if(sec) sec.classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+  var lr = document.getElementById('live-region');
+  if(lr) lr.textContent = 'Showing ' + btn.textContent.trim();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id === 'planner') dpLoadPort(document.getElementById('dp-port-select').value);
+}
+
+function toggleEssentials(btn) {
+  var panel = document.getElementById('essentials-panel');
+  var isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', !isOpen);
+}
+
+var DP_TENDER_PORTS = ['bonifacio','sorrento','hydra','milos','santorini','mykonos'];
+
+var DP_ITEMS = {
+  rome: [
+    "Vatican Museums & Sistine Chapel — book timed-entry at museivaticani.va",
+    "Colosseum & Roman Forum — book at coopculture.it, go at opening or after 3 PM",
+    "Pantheon — book at pantheonroma.com (€5 entry), best in early morning",
+    "Piazza Navona — Bernini's Fountain of the Four Rivers, 5 min from Pantheon",
+    "Trastevere neighborhood walk — cobblestone lanes, ivy-covered buildings",
+    "Campo de' Fiori morning market — Mon–Sat 7 AM–2 PM, fresh produce & flowers",
+    "Mercato Testaccio — Rome's best food market, authentic local experience",
+    "Civitavecchia Fish Market — early morning, fresh anchovies, squid, octopus",
+    "Mercato di San Lorenzo — 10 min walk from port, olive oil, cheeses, fresh catch",
+    "Frascati or Vermentino white wine tasting"
+  ],
+  bonifacio: [
+    "Haute Ville (Citadel) walk — Porte de Gênes, Sainte-Marie-Majeure, Marine Cemetery",
+    "King of Aragon's Staircase — 187 cliff-cut steps, extraordinary views",
+    "Cliff & Sea Cave Boat Tour — book at marina kiosks immediately on arrival",
+    "Lavezzi Islands snorkeling — 30–40 min boat ride, crystal-clear water",
+    "Capo Pertusato Coastal Path — 3 km to southernmost tip of Corsica",
+    "Eat in the Haute Ville — not the marina (better food, fairer prices)",
+    "Corsican Vermentino wine tasting",
+    "⚠️ Check wind/tender status before planning beach trips"
+  ],
+  portocervo: [
+    "Porto Cervo Marina & Piazzetta walk — early morning for photography",
+    "Piccolo Pevero Beach — early swim in glass-clear water",
+    "San Pantaleo Village Market — Thu & Sun, olive oil, bottarga, honey",
+    "Maddalena Archipelago boat trip — granite islets, turquoise lagoons",
+    "Old Port restaurants — Sardinian seafood, bottarga, Vermentino di Gallura",
+    "Vermentino di Gallura wine tasting — Capichera or Surrau labels"
+  ],
+  sorrento: [
+    "Pompeii — book nominative tickets at vivaticket.com BEFORE sailing",
+    "Capri by hydrofoil — buy return leg outbound, 20–25 min from Marina Piccola",
+    "Sorrento Old Town & Via San Cesareo — lemon shops, limoncello tastings",
+    "Positano by SITA coast bus — €2.60, buy at tabacchi, sit on the right",
+    "Marina Grande fishing quarter — Da Emilia or Bagni Delfino for seafood",
+    "Villa Comunale gardens — free, Bay of Naples views to Vesuvius",
+    "Limoncello factory visit — free tastings along Via San Cesareo",
+    "⚠️ Count backwards from last tender time — not all-aboard"
+  ],
+  syracuse: [
+    "Ortigia Island walk — Piazza del Duomo, Fonte Aretusa, medieval lanes",
+    "Ortigia Market — Via Trento, fresh swordfish, tuna, sea urchins, blood oranges",
+    "Neapolis Archaeological Park — Greek Theatre, Ear of Dionysius (check if open)",
+    "Noto Baroque town — 30 min by taxi, golden limestone, Caffè Sicilia granita",
+    "Sicilian seafood lunch — swordfish alla ghiotta, sea urchin pasta, grilled octopus",
+    "Etna Bianco wine tasting — volcanic white, look for Benanti or Cornelissen"
+  ],
+  malta: [
+    "St. John's Co-Cathedral — Caravaggio's largest painting, book at stjohnscocathedral.com",
+    "Valletta walk — Republic Street, Upper Barrakka Gardens, Fort St. Elmo",
+    "Three Cities by ferry — €1.50 each way, Birgu/Vittoriosa, Fort St. Angelo",
+    "Mdina Silent City — bus Route 51/52, ~30 min, go early morning",
+    "Marsaxlokk Fish Market — Sunday morning, luzzu fishing boats, fresh fish",
+    "Strait Street dining — old sailors' strip, now restaurants and bars",
+    "Maltese ftira — tuna and capers on Maltese bread (ask without cheese)"
+  ],
+  chania: [
+    "Venetian Harbour walk — lighthouse, harbor wall, early morning light",
+    "Chania Municipal Market (Agora) — Cretan olive oil, thyme honey, dried herbs",
+    "Balos Lagoon & Gramvousa — boat trip from Kissamos port (45 min taxi west)",
+    "Samaria Gorge — opens May 1, full-day commitment, 16 km walk",
+    "Cretan olive oil shopping — Kolymvari PDO, buy at the Agora",
+    "Vidiano or Thrapsathiri white wine tasting — Lyrarakis or Douloufakis"
+  ],
+  alexandria: [
+    "Pyramids of Giza & Grand Egyptian Museum — pre-book private driver (3 hrs each way)",
+    "Bibliotheca Alexandrina — EGP 120 entry, 90 min, morning before tour groups",
+    "Citadel of Qaitbay — EGP 100, built on site of ancient Lighthouse of Alexandria",
+    "Catacombs of Kom el-Shoqafa — EGP 100, Greco-Roman funerary art underground",
+    "Attarine Market — early morning, fresh fish, spices, herbs",
+    "Fish Market Restaurant near Qaitbay — choose your fish, grilled fresh",
+    "Stanley Bridge & Corniche walk — late afternoon golden light",
+    "⚠️ Use Uber/Careem — taxis are NOT metered, negotiate fare before entering"
+  ],
+  rhodes: [
+    "Medieval Old Town walk — Street of the Knights, Hippocrates Square, Jewish Quarter",
+    "Palace of the Grand Master — €20 combo ticket, go before 10 AM",
+    "Kallithea Springs — €5 entry, Art Deco spa + sheltered cove for swimming",
+    "Acropolis of Lindos — only with 8+ hours, book at hhticket.gr, 1 hr each way",
+    "Nireas restaurant — best seafood in the Old Town walls",
+    "Rhodian Athiri white wine tasting",
+    "⚠️ Check which berth (Kolona vs Akandia) — affects walk time to Old Town"
+  ],
+  mykonos: [
+    "Mykonos Town (Chora) walk — windmills, Paraportiani Church, Little Venice",
+    "Delos Island UNESCO — boats from Old Port only, €45 DIY, zero shade",
+    "Ano Mera Village — 16th-century monastery, authentic tavernas, bus €1.80",
+    "Ornos Beach — calm, sheltered, lounge chairs €25–50, bus €1.80",
+    "To Maereio restaurant — homemade Greek classics, locals' favorite",
+    "⚠️ From New Port: take SeaBus €2.50 — do NOT walk (no sidewalk)"
+  ],
+  athens: [
+    "Acropolis — go at opening or after 3 PM, €30 combined ticket",
+    "Acropolis Museum — glass floor over excavations, Parthenon Gallery",
+    "Plaka & Anafiotika — Cycladic village transplanted into Athens",
+    "Ancient Agora & Temple of Hephaestus — best-preserved Greek temple anywhere",
+    "Monastiraki Flea Market — best on Sundays, souvlaki at Kosta for €3–4",
+    "Psyrri or Koukaki neighborhood dining — authentic, away from tourist restaurants",
+    "Assyrtiko wine tasting — Santorini's finest white, available in Athens wine shops",
+    "Metro Line 1 from Piraeus — €1.20, 40 min to Monastiraki"
+  ],
+  hydra: [
+    "Harbor walk & captains' mansions — step off tender directly into town",
+    "Inland neighborhoods — head up any side street, prices drop, locals appear",
+    "Museum of Hydra (Koundouriotis Mansion) — shipping history, independence records",
+    "Coastal walk to Kamini — 15 min west, quaint fishing village, relaxed tavernas",
+    "Coastal walk to Vlychos — 30–40 min, pebble beach, traditional stone bridges",
+    "Monastery of Prophet Elias — 1 hr steep hike, panoramic views",
+    "Amygdalota almond sweets — Hydra's specialty, dairy-free, buy at harbor shops",
+    "⚠️ Eat inland — not on the waterfront (better food, much lower prices)"
+  ],
+  milos: [
+    "Sarakiniko Beach — moonscape of white volcanic rock, go early morning or late afternoon",
+    "Plaka & the Kastro — whitewashed lanes, Venetian castle, sunset views",
+    "Klima & the Syrmata — colorful boathouses at the water's edge, late afternoon light",
+    "Kleftiko Sea Caves — boat trip, white sea-stacks and arches, book ahead",
+    "Catacombs of Milos — early-Christian burial complex, €6 entry, check hours",
+    "Archaeological Museum of Milos — €4, cast of the Venus de Milo",
+    "Pollonia Village — calm bay, waterfront fish tavernas, 20 min by rental car",
+    "⚠️ Rent a car or ATV early — best way to reach Sarakiniko and far beaches"
+  ],
+  heraklion: [
+    "Palace of Knossos — go early morning, €15 entry, 5 km from port (taxi €10)",
+    "Heraklion Archaeological Museum — world's finest Minoan art, €15 entry",
+    "Koules Fortress — Venetian harbor fortress, €4 entry, Lion of St. Mark",
+    "1866 Street Market (Agora) — Cretan olive oil, thyme honey, dried herbs",
+    "Cretan seafood lunch — fresh fish, grilled octopus, dakos (ask without cheese)",
+    "Vidiano or Thrapsathiri white wine tasting"
+  ],
+  santorini: [
+    "Oia Village — blue domes, arrive by 5 PM for sunset spot, bus €2 from Fira",
+    "Fira caldera walk — to Firostefani and Imerovigli, best views without Oia crowds",
+    "Assyrtiko wine tasting — Santo Wines or Estate Argyros, book ahead",
+    "Akrotiri Archaeological Site — Minoan Pompeii, €20 entry, Red Beach nearby",
+    "Ammoudi Bay seafood — below Oia, grilled octopus, fresh fish on the water",
+    "Santorini fava — yellow split pea puree, the island's specialty (dairy-free)",
+    "⚠️ Cable car: take first tender up, allow 60–90 min for return on busy afternoons"
+  ],
+  naxos: [
+    "Portara — Temple of Apollo doorway, free, 5 min walk from ship, best at sunset",
+    "Kastro Quarter walk — whitewashed lanes, Venetian castle walls, harbor views",
+    "Agios Prokopios Beach — golden sand, calm water, tamarisk shade, 10–15 min walk",
+    "Apiranthos Village — marble-paved, Venetian character, 30 min by bus",
+    "Filoti Village — largest inland village, traditional square, excellent tavernas",
+    "Kitron liqueur tasting — unique to Naxos, citrus-based, dairy-free",
+    "Local wine & olive oil shopping — small shops in the old town"
+  ],
+  kusadasi: [
+    "Ephesus ancient city — pre-book licensed transport, 20–25 min, allow 2+ hours",
+    "Pigeon Island (Güvercinada) — 15 min walk from port, castle, harbor views",
+    "Kaleiçi Old Town & Caravanserai — narrow winding streets, historic gate",
+    "Grand Bazaar — haggle politely, start at 40–50% of first price",
+    "Waterfront fish restaurants — fresh fish, grilled seafood, meze",
+    "Turkish Aegean white wine tasting — Urla Winery or Chamlija",
+    "⚠️ Avoid 'free' carpet/leather presentations near the port — high-pressure sales"
+  ],
+  dikili: [
+    "Pergamon Acropolis & Asclepion — 40 min drive, cable car to top, negotiate taxi fare",
+    "Dikili Tuesday Market (Pazar) — if calling on Tuesday, walk straight there",
+    "Çandarlı Castle — Genoese fortress, 25 min south, sweeping Aegean views",
+    "Killik Bay thermal mud baths — 'Maldives of the Aegean', 20 min south",
+    "Kordon Promenade walk — fish restaurants, tea gardens, public beach",
+    "Dikili olive oil shopping — excellent local olive oil at market or Kordon shops",
+    "⚠️ Wear proper shoes for Pergamon — steep ancient stone paths"
+  ],
+  canakkale: [
+    "Ancient City of Troy — 30 min from Kepez, pre-book transport, allow 2+ hours",
+    "Troy Museum — excellent context for the ruins, near the archaeological site",
+    "Gallipoli Peninsula — ferry across Dardanelles, full-day, ANZAC Cove & memorials",
+    "Çanakkale waterfront — Trojan Horse movie prop, Naval Museum, seafront promenade",
+    "Çanakkale Archaeological Museum — Frank Calvert artifacts, Troy context",
+    "Seafront fish restaurants — fresh Dardanelles fish, sea bass, sea bream",
+    "⚠️ ANZAC Day (April 25) draws very large crowds to Gallipoli"
+  ],
+  istanbul: [
+    "Hagia Sophia — go at opening or after 3 PM, dress modestly (shoulders & knees covered)",
+    "Topkapi Palace — €25 entry, book online, Harem, Imperial Treasury, 3 hours",
+    "Grand Bazaar — 4,000+ shops, open 8:30 AM–7 PM, closed Sundays",
+    "Spice Bazaar — dried fruits, olive oils, spices, saffron — excellent for Holly",
+    "Galataport promenade walk — 1.2 km car-free waterfront, Bosphorus views",
+    "Istanbul Modern — Renzo Piano building at Galataport, Turkish modern art",
+    "Bosphorus ferry to Kadıköy — €0.50, Asian side, Kadıköy food market",
+    "Kılıç Ali Pasha Mosque — Mimar Sinan, 1580–1587, on the Galataport promenade",
+    "Plaka & Anafiotika walk — combine with Acropolis visit",
+    "Turkish Aegean white wine tasting — Urla Winery or Chamlija",
+    "⚠️ T1 tram from Tophane stop → Sultanahmet (10–15 min, €0.50)"
+  ]
+};
+
+function dpKey(port, field) { return 'ikon_dp_' + port + '_' + field; }
+
+function dpSave() {
+  var port = document.getElementById('dp-port-select').value;
+  localStorage.setItem(dpKey(port,'aboard'), document.getElementById('dp-aboard').value);
+  localStorage.setItem(dpKey(port,'docktime'), document.getElementById('dp-docktime').value);
+  localStorage.setItem(dpKey(port,'notes'), document.getElementById('dp-port-notes').value);
+  localStorage.setItem(dpKey(port,'tour'), document.getElementById('dp-tour-name').value);
+  localStorage.setItem(dpKey(port,'meeting'), document.getElementById('dp-tour-meeting').value);
+  var checks = document.querySelectorAll('#dp-checklist input[type=checkbox]');
+  var states = {};
+  checks.forEach(function(cb){ states[cb.dataset.key] = cb.checked; });
+  localStorage.setItem(dpKey(port,'checks'), JSON.stringify(states));
+  var customs = [];
+  document.querySelectorAll('#dp-checklist li[data-custom]').forEach(function(li){
+    customs.push(li.querySelector('label').textContent);
+  });
+  localStorage.setItem(dpKey(port,'customs'), JSON.stringify(customs));
+  var note = document.getElementById('dp-saved-note');
+  note.textContent = '&#10003; Saved — ' + new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+function dpLoadPort(port) {
+  document.getElementById('dp-aboard').value = localStorage.getItem(dpKey(port,'aboard')) || '';
+  document.getElementById('dp-docktime').value = localStorage.getItem(dpKey(port,'docktime')) || '';
+  document.getElementById('dp-port-notes').value = localStorage.getItem(dpKey(port,'notes')) || '';
+  document.getElementById('dp-tour-name').value = localStorage.getItem(dpKey(port,'tour')) || '';
+  document.getElementById('dp-tour-meeting').value = localStorage.getItem(dpKey(port,'meeting')) || '';
+  var alert = document.getElementById('dp-tender-alert');
+  alert.classList.toggle('show', DP_TENDER_PORTS.indexOf(port) >= 0);
+  var ul = document.getElementById('dp-checklist');
+  ul.innerHTML = '';
+  var savedChecks = JSON.parse(localStorage.getItem(dpKey(port,'checks')) || '{}');
+  var savedCustoms = JSON.parse(localStorage.getItem(dpKey(port,'customs')) || '[]');
+  var items = DP_ITEMS[port] || [];
+  items.forEach(function(item, i) {
+    var key = 'preset_' + i;
+    var li = document.createElement('li');
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.dataset.key = key;
+    cb.checked = savedChecks[key] || false;
+    cb.onchange = dpSave;
+    var lbl = document.createElement('label');
+    lbl.textContent = item;
+    li.appendChild(cb); li.appendChild(lbl);
+    ul.appendChild(li);
+  });
+  savedCustoms.forEach(function(text) { dpAddCustomItem(text, savedChecks); });
+}
+
+function dpAddCustomItem(text, savedChecks) {
+  if (!text.trim()) return;
+  var ul = document.getElementById('dp-checklist');
+  var key = 'custom_' + Date.now() + '_' + Math.random();
+  var li = document.createElement('li');
+  li.dataset.custom = '1';
+  var cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.dataset.key = key;
+  cb.checked = (savedChecks && savedChecks[key]) || false;
+  cb.onchange = dpSave;
+  var lbl = document.createElement('label');
+  lbl.textContent = text;
+  var rm = document.createElement('button');
+  rm.textContent = '✕';
+  rm.style.cssText = 'background:none;border:none;color:#6b8299;cursor:pointer;font-size:12px;margin-left:auto;padding:0 4px;flex-shrink:0;';
+  rm.onclick = function(){ li.remove(); dpSave(); };
+  li.appendChild(cb); li.appendChild(lbl); li.appendChild(rm);
+  ul.appendChild(li);
+}
+
+function dpAddCustom() {
+  var input = document.getElementById('dp-add-input');
+  var text = input.value.trim();
+  if (!text) return;
+  dpAddCustomItem(text, {});
+  input.value = '';
+  dpSave();
+}
+
+function dpClearPort() {
+  if (!confirm('Clear all plan data for this port?')) return;
+  var port = document.getElementById('dp-port-select').value;
+  ['aboard','docktime','notes','tour','meeting','checks','customs'].forEach(function(f){
+    localStorage.removeItem(dpKey(port,f));
+  });
+  dpLoadPort(port);
+}
+
+// Init planner on load
+document.addEventListener('DOMContentLoaded', function(){
+  dpLoadPort(document.getElementById('dp-port-select').value);
+});
+</script>
+</body>
+</html>
+
